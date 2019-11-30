@@ -31145,7 +31145,7 @@ function () {
   function CrashMapperClient() {
     _classCallCheck(this, CrashMapperClient);
 
-    this.baseurl = 'http://localhost/api';
+    this.baseurl = 'http://crashmapper.voxelvention.com/api';
     this.httpClient = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
       baseURL: this.baseurl
     });
