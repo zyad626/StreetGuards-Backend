@@ -1,6 +1,7 @@
 //
 @import 'modules/map.scss';
 @import 'spectre.css/src/spectre.scss';
+@import 'air-datepicker/dist/css/datepicker';
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 body {
@@ -39,4 +40,22 @@ body {
     left: 30px;
     top: 100px;
     padding: 10px;
+}
+
+.datepickers-container {
+    z-index: 20000;
+}
+
+.modal {
+    overflow: auto;
+    align-items: flex-start;
+    padding: 3.4rem;
+}
+
+.modal-container {
+    max-height: fit-content;
+}
+
+.modal.active .modal-overlay {
+    position: fixed;
 }

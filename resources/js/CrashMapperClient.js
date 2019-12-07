@@ -2,7 +2,8 @@ import axios from 'axios';
 
 class CrashMapperClient {
     constructor() {
-        this.baseurl = 'http://crashmapper.voxelvention.com/api';
+        // this.baseurl = 'http://crashmapper.voxelvention.com/api';
+        this.baseurl = 'http://crashmapper.me/api';
         this.httpClient = axios.create({
             baseURL: this.baseurl
         });
@@ -15,7 +16,8 @@ class CrashMapperClient {
     }
 
     post(endpoint, body, params) {
-        return this.httpClient.post(endpoint, body).then(response => response.data);
+        return this.httpClient.post(endpoint, body)
+            .then(response => response.data);
     }
 }
 

@@ -9,6 +9,7 @@ class JsonRequestHeader
     public function handle(Request $request, Closure $next)
     {
         $request->headers->set("Accept", "application/json");
+        $request->flat_errors = true;
 
         return $next($request);
     }
