@@ -1,0 +1,45 @@
+@import '../semantic/dist/semantic.min.css';
+body{
+    background-color: #f7f7f7;
+}
+
+#login-form{
+    width:500px;
+    max-width: 100%;
+}
+
+.page-centered{
+    text-align:center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.page-centered:before{
+    content: '.';
+    visibility: hidden;
+    height:100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.page-centered .block{
+    display: inline-block;
+    vertical-align: middle;
+    background-color:white;
+    text-align:left;
+    padding: 30px;
+    border: solid 1px #ddd;
+}
+
+.login-logo{
+    text-align: center;
+    margin: 30px;
+}
+
+.login-logo img{
+    display: inline-block;
+    max-width: 200px;
+}
