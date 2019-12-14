@@ -5,22 +5,22 @@
 @section('content')
 <div class='Map-Module' id='map'></div>
 
-<div class='Map-Filter'>
+<div class='Map-Filter' id='map_filter'>
     <div class="form-group">
         <label class="form-checkbox">
-            <input type="checkbox">
+            <input type="checkbox" v-model='filter.accidents'>
             <i class="form-icon"></i> Accidents
         </label>
     </div>
     <div class="form-group">
         <label class="form-checkbox">
-            <input type="checkbox">
+            <input type="checkbox" v-model='filter.hazards'>
             <i class="form-icon"></i> Hazards
         </label>
     </div>
     <div class="form-group">
         <label class="form-checkbox">
-            <input type="checkbox">
+            <input type="checkbox" v-model='filter.threatening_incidents'>
             <i class="form-icon"></i> Threatening Harrasment
         </label>
     </div>
@@ -162,14 +162,26 @@
 
                     <div class='app-hazard-data'  v-if="incident.type == 'hazard'">
                         <div class='form-group'>
-                            <label class='form-label text-bold'>Type of object</label>
+                            <label class='form-label text-bold'>Type</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='stationary_object' v-model="incident.type_of_collider">
-                                <i class="form-icon"></i> Stationary object
+                                <input type="radio" value='road' v-model="incident.hazard_type">
+                                <i class="form-icon"></i> Road
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='another_vehicle' v-model="incident.type_of_collider">
-                                <i class="form-icon"></i> Another vehicle
+                                <input type="radio" value='sidewalk' v-model="incident.hazard_type">
+                                <i class="form-icon"></i> Sidewalk
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" value='bus' v-model="incident.hazard_type">
+                                <i class="form-icon"></i> Bus
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" value='bike_lane' v-model="incident.hazard_type">
+                                <i class="form-icon"></i> Bike lane
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" value='other' v-model="incident.hazard_type">
+                                <i class="form-icon"></i> other
                             </label>
                         </div>
                     </div>
@@ -208,19 +220,19 @@
                         <div class='form-group'>
                             <label class="form-label text-bold">Weather</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='sunny' v-model="incident.road_surface_condition"><i class="form-icon"></i> Sunny
+                                <input type="radio" value='sunny' v-model="incident.weather"><i class="form-icon"></i> Sunny
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='cloudy' v-model="incident.road_surface_condition"><i class="form-icon"></i> Cloudy
+                                <input type="radio" value='cloudy' v-model="incident.weather"><i class="form-icon"></i> Cloudy
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='rainy' v-model="incident.road_surface_condition"><i class="form-icon"></i> Rainy
+                                <input type="radio" value='rainy' v-model="incident.weather"><i class="form-icon"></i> Rainy
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='sand_storm' v-model="incident.road_surface_condition"><i class="form-icon"></i> Sand Storm
+                                <input type="radio" value='sand_storm' v-model="incident.weather"><i class="form-icon"></i> Sand Storm
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='foggy' v-model="incident.road_surface_condition"><i class="form-icon"></i> Foggy
+                                <input type="radio" value='foggy' v-model="incident.weather"><i class="form-icon"></i> Foggy
                             </label>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Transformers\IncidentTransformer;
 use App\Http\Requests\CreateIncidentRequest;
 use App\Models\Incident;
+use Illuminate\Http\Request;
 
 class IncidentsController extends Controller
 {
@@ -17,9 +18,10 @@ class IncidentsController extends Controller
         return $this->itemResponse($incident, new IncidentTransformer);
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $incidents = Incident::get();
+        $type = $request->get('type');
+        $incidents = Incident::where('type', $type)->get();
         return $this->collectionResponse($incidents, new IncidentTransformer);
     }
 }

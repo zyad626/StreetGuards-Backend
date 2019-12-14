@@ -45722,6 +45722,8 @@ function () {
     this.center;
     this.map;
     this.cluster;
+    this.markers = {};
+    this.infowindow;
     this.initialize();
   }
 
@@ -45760,20 +45762,82 @@ function () {
 
       for (var i = 0; i < incidents.length; i++) {
         var incident = incidents[i];
-        var incidentLocation = incident.location;
-        var location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
-        var marker = new google.maps.Marker({
-          position: location
-        });
-        markers.push(marker);
+        markers.push(this.createIncidentMarker(incident));
       }
 
+      this.markers[groupName] = markers;
       this.cluster.addMarkers(markers);
+    }
+  }, {
+    key: "createIncidentMarker",
+    value: function createIncidentMarker(incident) {
+      var _this2 = this;
+
+      var incidentLocation = incident.location;
+      var location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
+      var marker = new google.maps.Marker({
+        position: location,
+        icon: "images/accident_icon.png"
+      });
+      var contentString = "";
+
+      if (incident.type == 'accident') {
+        contentString += "<b>Type:</b> Accident<br/>";
+      } else if (incident.type == 'hazard') {
+        contentString += "<b>Type:</b> Hazard<br/>";
+      } else if (incident.type == 'threatening') {
+        contentString += "<b>Type:</b> Threatening Incident<br/>";
+      }
+
+      contentString += "<b>Date:</b> " + incident.date + "<br/>";
+
+      if (incident.number_of_bikes) {
+        contentString += "<b>Number of bikes:</b> " + incident.number_of_bikes + "<br/>";
+      }
+
+      if (incident.number_of_vehicles) {
+        contentString += "<b>Number of vehicles:</b> " + incident.number_of_vehicles + "<br/>";
+      }
+
+      if (incident.number_of_pedesterians) {
+        contentString += "<b>Number of pedesterians:</b> " + incident.number_of_pedesterians + "<br/>";
+      }
+
+      if (incident.number_of_injuries) {
+        contentString += "<b>Number of injuries:</b> " + incident.number_of_injuries + "<br/>";
+      }
+
+      if (incident.number_of_fatalities) {
+        contentString += "<b>Number of fatalities:</b> " + incident.number_of_fatalities + "<br/>";
+      }
+
+      if (incident.description) {
+        contentString += "<b>Description:</b> " + incident.description + "<br/>";
+      }
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      marker.addListener('click', function () {
+        if (_this2.infowindow) {
+          _this2.infowindow.close();
+        }
+
+        infowindow.open(map, marker);
+        _this2.infowindow = infowindow;
+      });
+      return marker;
+    }
+  }, {
+    key: "removeGroup",
+    value: function removeGroup(groupName) {
+      this.cluster.removeMarkers(this.markers[groupName]);
+      this.markers[groupName] = [];
     }
   }, {
     key: "chooseLocation",
     value: function chooseLocation() {
-      var _this2 = this;
+      var _this3 = this;
 
       var marker = new google.maps.Marker({
         position: this.center,
@@ -45783,7 +45847,7 @@ function () {
         marker.setPosition(e.latLng); // set marker position to map center
       });
       return new Promise(function (resolve, reject) {
-        var l2 = _this2.map.addListener('click', function (e) {
+        var l2 = _this3.map.addListener('click', function (e) {
           google.maps.event.removeListener(l1);
           google.maps.event.removeListener(l2);
           marker.setPosition(e.latLng);
@@ -45838,9 +45902,6 @@ __webpack_require__(/*! air-datepicker/dist/js/i18n/datepicker.en */ "./node_mod
 
 var map = new _MapModule__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var crashMapperClient = new _CrashMapperClient__WEBPACK_IMPORTED_MODULE_1__["default"]();
-crashMapperClient.get('incidents').then(function (data) {
-  map.addGroup('incidens', data.data);
-});
 var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: '#add-incident-modal',
   data: {
@@ -45882,6 +45943,44 @@ var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
       }
     }).data('datepicker');
   }
+});
+
+var loadIncidents = function loadIncidents(type, newVal) {
+  if (newVal) {
+    crashMapperClient.get('incidents', {
+      'type': type
+    }).then(function (data) {
+      map.addGroup(type, data.data);
+    });
+  } else {
+    map.removeGroup(type);
+  }
+};
+
+var mapFilter = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
+  el: '#map_filter',
+  data: {
+    filter: {
+      'accidents': true,
+      'hazards': true,
+      'threatening_incidents': true
+    }
+  },
+  mounted: function mounted() {
+    loadIncidents('accident', true);
+    loadIncidents('hazard', true);
+    loadIncidents('threatening', true);
+  }
+});
+mapFilter.$watch('filter.accidents', function (newVal, oldVal) {
+  debugger;
+  loadIncidents('accident', newVal);
+});
+mapFilter.$watch('filter.hazards', function (newVal, oldVal) {
+  loadIncidents('hazard', newVal);
+});
+mapFilter.$watch('filter.threatening_incidents', function (newVal, oldVal) {
+  loadIncidents('threatening', newVal);
 });
 jquery__WEBPACK_IMPORTED_MODULE_2___default()('#app-add-incident').on('click', function (e) {
   map.chooseLocation().then(function (location) {
@@ -45949,32 +46048,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Incident = function Incident() {
   _classCallCheck(this, Incident);
 
-  this.date = '';
-  this.type = '';
+  this.date = null;
+  this.type = null;
   this.location = {
     lat: null,
     lng: null
   }; //Accident
 
-  this.number_of_vehicles = '';
-  this.number_of_bikes = '';
-  this.number_of_pedesterians = '';
-  this.type_of_collision = '';
-  this.number_of_injuries = '';
-  this.number_of_fatalities = '';
-  this.purpose_of_trip = '';
-  this.reporter_involved = '';
-  this.collision_at = ''; //Threatening
+  this.number_of_vehicles = null;
+  this.number_of_bikes = null;
+  this.number_of_pedesterians = null;
+  this.type_of_collision = null;
+  this.number_of_injuries = null;
+  this.number_of_fatalities = null;
+  this.purpose_of_trip = null;
+  this.reporter_involved = null;
+  this.collision_at = null; //Threatening
 
-  this.threatening_type = ''; //Hazard
+  this.threatening_type = null; //Hazard
 
-  this.collision_type = '';
-  this.type_of_collider = ''; //general
+  this.hazard_type = null; //general
 
-  this.road_type = '';
-  this.road_surface_condition = '';
-  this.weather = '';
-  this.description = '';
+  this.road_type = null;
+  this.road_surface_condition = null;
+  this.weather = null;
+  this.description = null;
 };
 
 

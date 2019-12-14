@@ -12,10 +12,6 @@ require('air-datepicker/dist/js/i18n/datepicker.en');
 
 let map = new MapModule();
 let crashMapperClient = new CrashMapperClient();
-crashMapperClient.get('incidents')
-    .then(data => {
-        map.addGroup('incidens', data.data);
-    });
 
 var form = new Vue({
         el: '#add-incident-modal',
@@ -57,6 +53,45 @@ var form = new Vue({
         }
     });
 
+var loadIncidents = function (type, newVal) {
+    if (newVal) {
+        crashMapperClient.get('incidents', {'type': type})
+            .then(data => {
+                map.addGroup(type, data.data);
+            });
+    } else {
+        map.removeGroup(type);
+    }
+};
+    
+var mapFilter = new Vue({
+    el: '#map_filter',
+    data: {
+        filter: {
+            'accidents': true,
+            'hazards': true,
+            'threatening_incidents': true,
+        }
+    },
+    mounted: function () {
+        loadIncidents('accident', true);
+        loadIncidents('hazard', true);
+        loadIncidents('threatening', true);
+    }
+});
+
+mapFilter.$watch('filter.accidents', function (newVal, oldVal) {
+    debugger;
+    loadIncidents('accident', newVal);
+});
+
+mapFilter.$watch('filter.hazards', function (newVal, oldVal) {
+    loadIncidents('hazard', newVal);
+});
+
+mapFilter.$watch('filter.threatening_incidents', function (newVal, oldVal) {
+    loadIncidents('threatening', newVal);
+});
 
 $('#app-add-incident').on('click', e => {
     map.chooseLocation()

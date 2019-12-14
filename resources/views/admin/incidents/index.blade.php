@@ -19,15 +19,21 @@
                 <th>{{ __('admin_incidents.date') }}</th>
                 <th>{{ __('admin_incidents.type') }}</th>
                 <th>{{ __('admin_incidents.location') }}</th>
+                <th>{{ __('admin_incidents.data') }}</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach ($incidents as $incident)
             <tr>
-                <td>{{ __('admin_incidents.'.$incident->type) }}</td>
                 <td>{{ $incident->date }}</td>
+                <td>{{ __('admin_incidents.'.$incident->type) }}</td>
                 <td>{{ $incident->location['lat'] }} , {{ $incident->location['lng'] }}</td>
+                <td>
+                    <div class='uid label'>
+                        {{ __('admin_incidents.road_type') }} {{  __('admin_incidents.road_types.'.$incident->road_type) }}
+                    </div>
+                </td>
                 <td>
                     <a class='ui small green button' href="{{ route('admin.incidents.view', $incident->id) }}">
                         <i class='ui eye icon'></i>

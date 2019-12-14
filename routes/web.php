@@ -47,3 +47,8 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::match(['get', 'post'], '/auth/login', 'AuthController@login')->name('admin.auth.login');
     Route::get('/auth/logout', 'AuthController@logout')->name('admin.auth.logout');
 });
+
+Route::get('/', function () {
+    return view('site.home');
+})->name('site.home');
+

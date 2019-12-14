@@ -6,6 +6,8 @@ class MapModule
         this.center;
         this.map;
         this.cluster;
+        this.markers = {};
+        this.infowindow;
         this.initialize();
     }
 
@@ -30,14 +32,75 @@ class MapModule
         let markers = [];
         for (let i=0; i<incidents.length; i++) {
             let incident = incidents[i];
-            let incidentLocation = incident.location;
-            let location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
-
-            let marker = new google.maps.Marker({position: location});
-            markers.push(marker);
+            markers.push(
+                this.createIncidentMarker(incident)
+            );
         }
+        this.markers[groupName] = markers;
         this.cluster.addMarkers(markers);
+    }
 
+    createIncidentMarker(incident) {
+        let incidentLocation = incident.location;
+        let location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
+
+        let marker = new google.maps.Marker({
+            position: location,
+            icon: "images/accident_icon.png"
+        });
+        var contentString = "";
+
+        if (incident.type == 'accident') {
+            contentString += "<b>Type:</b> Accident<br/>";
+        } else if (incident.type == 'hazard') {
+            contentString += "<b>Type:</b> Hazard<br/>";
+        } else if (incident.type == 'threatening') {
+            contentString += "<b>Type:</b> Threatening Incident<br/>";
+        }
+
+        contentString += "<b>Date:</b> "+incident.date+"<br/>";
+
+
+        if (incident.number_of_bikes) {
+            contentString += "<b>Number of bikes:</b> "+incident.number_of_bikes+"<br/>";
+        }
+
+        if (incident.number_of_vehicles) {
+            contentString += "<b>Number of vehicles:</b> "+incident.number_of_vehicles+"<br/>";
+        }
+        if (incident.number_of_pedesterians) {
+            contentString += "<b>Number of pedesterians:</b> "+incident.number_of_pedesterians+"<br/>";
+        }
+
+        if (incident.number_of_injuries) {
+            contentString += "<b>Number of injuries:</b> "+incident.number_of_injuries+"<br/>";
+        }
+
+        if (incident.number_of_fatalities) {
+            contentString += "<b>Number of fatalities:</b> "+incident.number_of_fatalities+"<br/>";
+        }
+
+        if (incident.description) {
+            contentString += "<b>Description:</b> "+incident.description+"<br/>";
+        }
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+        marker.addListener('click', () => {
+            if (this.infowindow) {
+                this.infowindow.close();
+            }
+            infowindow.open(map, marker);
+            this.infowindow = infowindow;
+        });
+
+        return marker;
+    }
+
+    removeGroup(groupName) {
+        this.cluster.removeMarkers(this.markers[groupName]);
+        this.markers[groupName] = [];
     }
 
     chooseLocation() {
