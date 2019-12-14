@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     
-                    <div v-if="incident.type">
+                    <div v-show="incident.type">
 
                         <div class='form-group'>
                             <label class="form-label text-bold">Tell us more about what happened</label>
@@ -246,7 +246,9 @@
     
                         <div class='form-group text-bold'>
                             <label class="form-label">Upload photos or videos</label>
-    
+                            <div class='dropzone' id='files-uploader'>
+                            
+                            </div>
                         </div>
                     </div>
 

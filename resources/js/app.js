@@ -3,6 +3,7 @@ import CrashMapperClient from './CrashMapperClient';
 import $ from 'jquery';
 import Vue from 'vue';
 import Incident from './incident';
+import Dropzone from 'dropzone';
 
 window.jQuery = $;
 require('./bootstrap');
@@ -12,7 +13,7 @@ require('air-datepicker/dist/js/i18n/datepicker.en');
 
 let map = new MapModule();
 let crashMapperClient = new CrashMapperClient();
-
+Dropzone.autoDiscover = false;
 var form = new Vue({
         el: '#add-incident-modal',
         data: {
@@ -42,6 +43,7 @@ var form = new Vue({
             }
         },
         mounted: function () {
+            var $date = $('#add-incident-modal .app-date');
             $('#add-incident-modal .app-date').datepicker({
                 language: 'en',
                 dateFormat: 'yyyy-mm-dd',
@@ -50,6 +52,11 @@ var form = new Vue({
                     this.incident.date = formattedDate;
                 }
             }).data('datepicker');
+            
+            var myDropZone = new Dropzone("div#files-uploader", { url: "/api/files"});
+            myDropZone.on('success', (file, response) => {
+                this.incident.files.push(response.id);
+            });
         }
     });
 

@@ -26,6 +26,8 @@ class Incident {
         this.road_surface_condition = null;
         this.weather = null;
         this.description = null;
+
+        this.files = [];
     }
 }
 

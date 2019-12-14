@@ -17,4 +17,6 @@ Route::group(['namespace' => 'API'], function () {
     Route::post('/incidents', 'IncidentsController@create');
     
     Route::get('/incidents', 'IncidentsController@list');
+
+    Route::post('/files', 'FilesController@create');
 });

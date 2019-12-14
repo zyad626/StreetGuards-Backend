@@ -27,7 +27,9 @@ class CreateIncidentRequest extends BaseRequest
             'date' => 'required',
             'location' => 'required',
             'type' => 'required',
-            
+            'files' => 'array|max:10',
+            'files.*' => 'string|exists:files,_id',
+
             //Accident
             'number_of_vehicles' => "required_if:type,accident|integer|nullable",
             'number_of_bikes' => "required_if:type,accident|integer|nullable",
@@ -58,6 +60,7 @@ class CreateIncidentRequest extends BaseRequest
             'date',
             'location',
             'type',
+            'files',
             
             //Accident
             'number_of_vehicles',

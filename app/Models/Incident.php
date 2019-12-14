@@ -37,4 +37,9 @@ class Incident extends MongoModel
         'weather',
         'description',
     ];
+
+    public function files()
+    {
+        return $this->hasMany('App\Models\File');
+    }
 }
