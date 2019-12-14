@@ -28,6 +28,14 @@ class MapModule
         }
     }
 
+    addToGroup(type, incident) {
+        if (this.markers[type]) {
+            var marker = this.createIncidentMarker(incident);
+            this.markers[type].push(marker);
+            this.cluster.addMarkers([marker]);
+        }
+    }
+
     addGroup(groupName, incidents) {
         let markers = [];
         for (let i=0; i<incidents.length; i++) {
@@ -113,10 +121,17 @@ class MapModule
     }
 
     chooseLocation() {
-        var marker = new google.maps.Marker({position: this.center, map: this.map});
+        var marker = new google.maps.Marker({
+            position: this.center, map: this.map,
+            icon: "images/default_icon.png"
+        });
 
         var l1 = this.map.addListener('mousemove', (e) => {
             marker.setPosition(e.latLng); // set marker position to map center
+        });
+
+        var l3 = this.map.addListener('right_click', (e) => {
+            marker.setMap(null); // remove marker
         });
 
         return new Promise((resolve, reject) => {
@@ -124,8 +139,8 @@ class MapModule
             var l2 = this.map.addListener('click', e => {
                 google.maps.event.removeListener(l1);
                 google.maps.event.removeListener(l2);
-
-                marker.setPosition(e.latLng);
+                
+                marker.setMap(null);
                 resolve({lat: e.latLng.lat, lng: e.latLng.lng});
             });
             

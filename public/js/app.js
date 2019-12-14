@@ -49206,7 +49206,7 @@ function () {
     _classCallCheck(this, CrashMapperClient);
 
     // this.baseurl = 'http://crashmapper.voxelvention.com/api';
-    this.baseurl = 'http://crashmapper.me/api';
+    this.baseurl = '/api';
     this.httpClient = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
       baseURL: this.baseurl
     });
@@ -49296,6 +49296,15 @@ function () {
             map: _this.map
           });
         });
+      }
+    }
+  }, {
+    key: "addToGroup",
+    value: function addToGroup(type, incident) {
+      if (this.markers[type]) {
+        var marker = this.createIncidentMarker(incident);
+        this.markers[type].push(marker);
+        this.cluster.addMarkers([marker]);
       }
     }
   }, {
@@ -49394,16 +49403,20 @@ function () {
 
       var marker = new google.maps.Marker({
         position: this.center,
-        map: this.map
+        map: this.map,
+        icon: "images/default_icon.png"
       });
       var l1 = this.map.addListener('mousemove', function (e) {
         marker.setPosition(e.latLng); // set marker position to map center
+      });
+      var l3 = this.map.addListener('right_click', function (e) {
+        marker.setMap(null); // remove marker
       });
       return new Promise(function (resolve, reject) {
         var l2 = _this3.map.addListener('click', function (e) {
           google.maps.event.removeListener(l1);
           google.maps.event.removeListener(l2);
-          marker.setPosition(e.latLng);
+          marker.setMap(null);
           resolve({
             lat: e.latLng.lat,
             lng: e.latLng.lng
@@ -49459,6 +49472,7 @@ __webpack_require__(/*! air-datepicker/dist/js/i18n/datepicker.en */ "./node_mod
 var map = new _MapModule__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var crashMapperClient = new _CrashMapperClient__WEBPACK_IMPORTED_MODULE_1__["default"]();
 dropzone__WEBPACK_IMPORTED_MODULE_5___default.a.autoDiscover = false;
+var myDropZone;
 var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: '#add-incident-modal',
   data: {
@@ -49469,8 +49483,10 @@ var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
     save: function save(event) {
       var _this = this;
 
-      crashMapperClient.post('incidents', this.incident).then(function (_) {
+      crashMapperClient.post('incidents', this.incident).then(function (incident) {
         jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').removeClass('active');
+        map.addToGroup(incident.type, incident);
+        myDropZone.removeAllFiles(true);
       })["catch"](function (e) {
         if (e.response) {
           console.log(e.response.data);
@@ -49500,7 +49516,7 @@ var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
         _this2.incident.date = formattedDate;
       }
     }).data('datepicker');
-    var myDropZone = new dropzone__WEBPACK_IMPORTED_MODULE_5___default.a("div#files-uploader", {
+    myDropZone = new dropzone__WEBPACK_IMPORTED_MODULE_5___default.a("div#files-uploader", {
       url: "/api/files"
     });
     myDropZone.on('success', function (file, response) {

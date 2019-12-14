@@ -14,6 +14,9 @@ require('air-datepicker/dist/js/i18n/datepicker.en');
 let map = new MapModule();
 let crashMapperClient = new CrashMapperClient();
 Dropzone.autoDiscover = false;
+var myDropZone;
+
+
 var form = new Vue({
         el: '#add-incident-modal',
         data: {
@@ -23,8 +26,10 @@ var form = new Vue({
         methods: {
             save: function (event) {
                 crashMapperClient.post('incidents', this.incident)
-                .then(_ => {
+                .then(incident => {
                     $('#add-incident-modal').removeClass('active');
+                    map.addToGroup(incident.type, incident);
+                    myDropZone.removeAllFiles(true);
                 }).catch(e => {
                     if (e.response) {
                         console.log(e.response.data);
@@ -52,8 +57,7 @@ var form = new Vue({
                     this.incident.date = formattedDate;
                 }
             }).data('datepicker');
-            
-            var myDropZone = new Dropzone("div#files-uploader", { url: "/api/files"});
+            myDropZone = new Dropzone("div#files-uploader", { url: "/api/files"});
             myDropZone.on('success', (file, response) => {
                 this.incident.files.push(response.id);
             });
