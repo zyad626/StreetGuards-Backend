@@ -45662,8 +45662,8 @@ function () {
   function CrashMapperClient() {
     _classCallCheck(this, CrashMapperClient);
 
-    this.baseurl = 'http://crashmapper.voxelvention.com/api'; // this.baseurl = 'http://crashmapper.me/api';
-
+    // this.baseurl = 'http://crashmapper.voxelvention.com/api';
+    this.baseurl = 'http://crashmapper.me/api';
     this.httpClient = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
       baseURL: this.baseurl
     });
@@ -45775,9 +45775,19 @@ function () {
 
       var incidentLocation = incident.location;
       var location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
+      var iconImage = null;
+
+      if (incident.type == 'accident') {
+        iconImage = "images/accident_icon.png";
+      } else if (incident.type == 'hazard') {
+        iconImage = "images/hazard_icon.png";
+      } else if (incident.type == 'threatening') {
+        iconImage = "images/threatening_icon.png";
+      }
+
       var marker = new google.maps.Marker({
         position: location,
-        icon: "images/accident_icon.png"
+        icon: iconImage
       });
       var contentString = "";
 

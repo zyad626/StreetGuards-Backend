@@ -44,9 +44,18 @@ class MapModule
         let incidentLocation = incident.location;
         let location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
 
+        var iconImage = null;
+        if (incident.type == 'accident') {
+            iconImage = "images/accident_icon.png";
+        } else if (incident.type == 'hazard') {
+            iconImage = "images/hazard_icon.png";
+        } else if (incident.type == 'threatening') {
+            iconImage = "images/threatening_icon.png";
+        }
+
         let marker = new google.maps.Marker({
             position: location,
-            icon: "images/accident_icon.png"
+            icon: iconImage
         });
         var contentString = "";
 
