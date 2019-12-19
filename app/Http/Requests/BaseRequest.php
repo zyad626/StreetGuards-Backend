@@ -7,9 +7,9 @@ abstract class BaseRequest extends FormRequest
 {
     public function validated()
     {
-        $validated = parent::validated();
-        $fields = $this->requestFields();
-        return $this->getRequestFields($validated, $fields);
+        return parent::validated();
+        // $fields = $this->requestFields();
+        // return $this->getRequestFields($validated, $fields);
     }
 
     protected function getRequestFields($data, $keys)

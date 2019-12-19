@@ -53,7 +53,7 @@ class MapModule
         let location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
 
         var iconImage = null;
-        if (incident.type == 'accident') {
+        if (incident.type == 'crash_near_miss') {
             iconImage = "images/accident_icon.png";
         } else if (incident.type == 'hazard') {
             iconImage = "images/hazard_icon.png";
@@ -67,8 +67,34 @@ class MapModule
         });
         var contentString = "";
 
-        if (incident.type == 'accident') {
-            contentString += "<b>Type:</b> Accident<br/>";
+        if (incident.type == 'crash_near_miss') {
+            if (incident.crash_data ) {
+                var crashData = incident.crash_data;
+                if (crashData.type) {
+                    contentString += "<b>Type:</b> "+crashData.type+"<br/>";
+                }
+
+                if (crashData.number_involved_bikes) {
+                    contentString += "<b>Number of bikes:</b> "+crashData.number_involved_bikes+"<br/>";
+                }
+
+                if (crashData.number_involved_vehicles) {
+                    contentString += "<b>Number of vehicles:</b> "+crashData.number_involved_vehicles+"<br/>";
+                }
+                if (crashData.number_involved_pedesterians) {
+                    contentString += "<b>Number of pedesterians:</b> "+crashData.number_involved_pedesterians+"<br/>";
+                }
+
+                if (crashData.number_of_injuries) {
+                    contentString += "<b>Number of injuries:</b> "+crashData.number_of_injuries+"<br/>";
+                }
+
+                if (crashData.number_of_fatalities) {
+                    contentString += "<b>Number of fatalities:</b> "+crashData.number_of_fatalities+"<br/>";
+                }
+            } else {
+                contentString += "<b>Type:</b> Crash / Near Miss<br/>";
+            }
         } else if (incident.type == 'hazard') {
             contentString += "<b>Type:</b> Hazard<br/>";
         } else if (incident.type == 'threatening') {
@@ -77,25 +103,6 @@ class MapModule
 
         contentString += "<b>Date:</b> "+incident.date+"<br/>";
 
-
-        if (incident.number_of_bikes) {
-            contentString += "<b>Number of bikes:</b> "+incident.number_of_bikes+"<br/>";
-        }
-
-        if (incident.number_of_vehicles) {
-            contentString += "<b>Number of vehicles:</b> "+incident.number_of_vehicles+"<br/>";
-        }
-        if (incident.number_of_pedesterians) {
-            contentString += "<b>Number of pedesterians:</b> "+incident.number_of_pedesterians+"<br/>";
-        }
-
-        if (incident.number_of_injuries) {
-            contentString += "<b>Number of injuries:</b> "+incident.number_of_injuries+"<br/>";
-        }
-
-        if (incident.number_of_fatalities) {
-            contentString += "<b>Number of fatalities:</b> "+incident.number_of_fatalities+"<br/>";
-        }
 
         if (incident.description) {
             contentString += "<b>Description:</b> "+incident.description+"<br/>";

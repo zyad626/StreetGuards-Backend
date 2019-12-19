@@ -37,6 +37,15 @@ var form = new Vue({
                     }
                 });
             },
+            isNumber: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                  evt.preventDefault();;
+                } else {
+                  return true;
+                }
+            },
             checkForm: function (e) {
                 e.preventDefault();
             }
@@ -64,12 +73,20 @@ var form = new Vue({
         }
     });
 
+var isLoading = {};
 var loadIncidents = function (type, newVal) {
     if (newVal) {
-        crashMapperClient.get('incidents', {'type': type})
-            .then(data => {
-                map.addGroup(type, data.data);
-            });
+        if (!isLoading[type]) {
+            isLoading[type] = true;
+            crashMapperClient.get('incidents', {'type': type})
+                .then(data => {
+                    isLoading[type] = false;
+
+                    if (mapFilter.filter[type]) {
+                        map.addGroup(type, data.data);
+                    }
+                });
+        }
     } else {
         map.removeGroup(type);
     }
@@ -79,28 +96,27 @@ var mapFilter = new Vue({
     el: '#map_filter',
     data: {
         filter: {
-            'accidents': true,
-            'hazards': true,
-            'threatening_incidents': true,
+            'crash_near_miss': true,
+            'hazard': true,
+            'threatening': true,
         }
     },
     mounted: function () {
-        loadIncidents('accident', true);
+        loadIncidents('crash_near_miss', true);
         loadIncidents('hazard', true);
         loadIncidents('threatening', true);
     }
 });
 
-mapFilter.$watch('filter.accidents', function (newVal, oldVal) {
-    debugger;
-    loadIncidents('accident', newVal);
+mapFilter.$watch('filter.crash_near_miss', function (newVal, oldVal) {
+    loadIncidents('crash_near_miss', newVal);
 });
 
-mapFilter.$watch('filter.hazards', function (newVal, oldVal) {
+mapFilter.$watch('filter.hazard', function (newVal, oldVal) {
     loadIncidents('hazard', newVal);
 });
 
-mapFilter.$watch('filter.threatening_incidents', function (newVal, oldVal) {
+mapFilter.$watch('filter.threatening', function (newVal, oldVal) {
     loadIncidents('threatening', newVal);
 });
 

@@ -49329,7 +49329,7 @@ function () {
       var location = new google.maps.LatLng(incidentLocation.lat, incidentLocation.lng);
       var iconImage = null;
 
-      if (incident.type == 'accident') {
+      if (incident.type == 'crash_near_miss') {
         iconImage = "images/accident_icon.png";
       } else if (incident.type == 'hazard') {
         iconImage = "images/hazard_icon.png";
@@ -49343,8 +49343,36 @@ function () {
       });
       var contentString = "";
 
-      if (incident.type == 'accident') {
-        contentString += "<b>Type:</b> Accident<br/>";
+      if (incident.type == 'crash_near_miss') {
+        if (incident.crash_data) {
+          var crashData = incident.crash_data;
+
+          if (crashData.type) {
+            contentString += "<b>Type:</b> " + crashData.type + "<br/>";
+          }
+
+          if (crashData.number_involved_bikes) {
+            contentString += "<b>Number of bikes:</b> " + crashData.number_involved_bikes + "<br/>";
+          }
+
+          if (crashData.number_involved_vehicles) {
+            contentString += "<b>Number of vehicles:</b> " + crashData.number_involved_vehicles + "<br/>";
+          }
+
+          if (crashData.number_involved_pedesterians) {
+            contentString += "<b>Number of pedesterians:</b> " + crashData.number_involved_pedesterians + "<br/>";
+          }
+
+          if (crashData.number_of_injuries) {
+            contentString += "<b>Number of injuries:</b> " + crashData.number_of_injuries + "<br/>";
+          }
+
+          if (crashData.number_of_fatalities) {
+            contentString += "<b>Number of fatalities:</b> " + crashData.number_of_fatalities + "<br/>";
+          }
+        } else {
+          contentString += "<b>Type:</b> Crash / Near Miss<br/>";
+        }
       } else if (incident.type == 'hazard') {
         contentString += "<b>Type:</b> Hazard<br/>";
       } else if (incident.type == 'threatening') {
@@ -49352,26 +49380,6 @@ function () {
       }
 
       contentString += "<b>Date:</b> " + incident.date + "<br/>";
-
-      if (incident.number_of_bikes) {
-        contentString += "<b>Number of bikes:</b> " + incident.number_of_bikes + "<br/>";
-      }
-
-      if (incident.number_of_vehicles) {
-        contentString += "<b>Number of vehicles:</b> " + incident.number_of_vehicles + "<br/>";
-      }
-
-      if (incident.number_of_pedesterians) {
-        contentString += "<b>Number of pedesterians:</b> " + incident.number_of_pedesterians + "<br/>";
-      }
-
-      if (incident.number_of_injuries) {
-        contentString += "<b>Number of injuries:</b> " + incident.number_of_injuries + "<br/>";
-      }
-
-      if (incident.number_of_fatalities) {
-        contentString += "<b>Number of fatalities:</b> " + incident.number_of_fatalities + "<br/>";
-      }
 
       if (incident.description) {
         contentString += "<b>Description:</b> " + incident.description + "<br/>";
@@ -49494,6 +49502,17 @@ var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
         }
       });
     },
+    isNumber: function isNumber(evt) {
+      evt = evt ? evt : window.event;
+      var charCode = evt.which ? evt.which : evt.keyCode;
+
+      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+        evt.preventDefault();
+        ;
+      } else {
+        return true;
+      }
+    },
     checkForm: function checkForm(e) {
       e.preventDefault();
     }
@@ -49524,14 +49543,22 @@ var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
     });
   }
 });
+var isLoading = {};
 
 var loadIncidents = function loadIncidents(type, newVal) {
   if (newVal) {
-    crashMapperClient.get('incidents', {
-      'type': type
-    }).then(function (data) {
-      map.addGroup(type, data.data);
-    });
+    if (!isLoading[type]) {
+      isLoading[type] = true;
+      crashMapperClient.get('incidents', {
+        'type': type
+      }).then(function (data) {
+        isLoading[type] = false;
+
+        if (mapFilter.filter[type]) {
+          map.addGroup(type, data.data);
+        }
+      });
+    }
   } else {
     map.removeGroup(type);
   }
@@ -49541,25 +49568,24 @@ var mapFilter = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
   el: '#map_filter',
   data: {
     filter: {
-      'accidents': true,
-      'hazards': true,
-      'threatening_incidents': true
+      'crash_near_miss': true,
+      'hazard': true,
+      'threatening': true
     }
   },
   mounted: function mounted() {
-    loadIncidents('accident', true);
+    loadIncidents('crash_near_miss', true);
     loadIncidents('hazard', true);
     loadIncidents('threatening', true);
   }
 });
-mapFilter.$watch('filter.accidents', function (newVal, oldVal) {
-  debugger;
-  loadIncidents('accident', newVal);
+mapFilter.$watch('filter.crash_near_miss', function (newVal, oldVal) {
+  loadIncidents('crash_near_miss', newVal);
 });
-mapFilter.$watch('filter.hazards', function (newVal, oldVal) {
+mapFilter.$watch('filter.hazard', function (newVal, oldVal) {
   loadIncidents('hazard', newVal);
 });
-mapFilter.$watch('filter.threatening_incidents', function (newVal, oldVal) {
+mapFilter.$watch('filter.threatening', function (newVal, oldVal) {
   loadIncidents('threatening', newVal);
 });
 jquery__WEBPACK_IMPORTED_MODULE_2___default()('#app-add-incident').on('click', function (e) {
@@ -49633,25 +49659,10 @@ var Incident = function Incident() {
   this.location = {
     lat: null,
     lng: null
-  }; //Accident
-
-  this.number_of_vehicles = null;
-  this.number_of_bikes = null;
-  this.number_of_pedesterians = null;
-  this.type_of_collision = null;
-  this.number_of_injuries = null;
-  this.number_of_fatalities = null;
-  this.purpose_of_trip = null;
-  this.reporter_involved = null;
-  this.collision_at = null; //Threatening
-
-  this.threatening_type = null; //Hazard
-
-  this.hazard_type = null; //general
-
-  this.road_type = null;
-  this.road_surface_condition = null;
-  this.weather = null;
+  };
+  this.crash_data = {};
+  this.hazard_data = {};
+  this.threatening_data = {};
   this.description = null;
   this.files = [];
 };

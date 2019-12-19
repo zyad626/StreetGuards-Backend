@@ -31,20 +31,21 @@ class CreateIncidentRequest extends BaseRequest
             'files.*' => 'string|exists:files,_id',
 
             //Accident
-            'number_of_vehicles' => "required_if:type,accident|integer|nullable",
-            'number_of_bikes' => "required_if:type,accident|integer|nullable",
-            'number_of_pedesterians' => "required_if:type,accident|integer|nullable",
-            'type_of_collision' => "required_if:type,accident|string|nullable",
-            'number_of_injuries' => "required_if:type,accident|integer|nullable",
-            'number_of_fatalities' => "required_if:type,accident|integer|nullable",
-            'purpose_of_trip' => "required_if:type,accident|string|nullable",
-            'reporter_involved' => "required_if:type,accident|integer|nullable",
+            'crash_data.type' => "required_if:type,crash_near_miss|string|nullable",
+            'crash_data.number_involved_vehicles' => "required_if:type,crash_near_miss|integer|nullable",
+            'crash_data.number_involved_bikes' => "required_if:type,crash_near_miss|integer|nullable",
+            'crash_data.number_involved_pedesterians' => "required_if:type,crash_near_miss|integer|nullable",
+            'crash_data.type_of_collision' => "required_if:type,crash_near_miss|string|nullable",
+            'crash_data.number_of_injuries' => "required_if:type,crash_near_miss|integer|nullable",
+            'crash_data.number_of_fatalities' => "required_if:type,crash_near_miss|integer|nullable",
+            'crash_data.reporter_involved' => "required_if:type,crash_near_miss|boolean|nullable",
+            'crash_data.reporter_type' => "required_if:type,crash_near_miss|string|nullable",
 
             //Hazard
-            'hazard_type' => "required_if:type,hazard|string|nullable",
+            'hazard_data.type' => "required_if:type,hazard|string|nullable",
 
             //Threatening incident
-            'threatening_type' => "required_if:type,threatening|string|nullable",
+            'threatening_data.type' => "required_if:type,threatening|string|nullable",
 
             //General
             'road_type' => "required_if:type,hazard,accident|string|nullable",

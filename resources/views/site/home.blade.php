@@ -8,20 +8,32 @@
 <div class='Map-Filter' id='map_filter'>
     <div class="form-group">
         <label class="form-checkbox">
-            <input type="checkbox" v-model='filter.accidents'>
-            <i class="form-icon"></i> Accidents
+            <input type="checkbox" v-model='filter.crash_near_miss'>
+            <i class="form-icon" style='top: 0.8rem;'></i>
+            <span style='user-select: none;'>
+                Crash / Near Miss
+            </span>
+            <img src="{{ asset('images/crash.png') }}" style='height: 50px; vertical-align: middle; display:inline-block;' alt="">
         </label>
     </div>
     <div class="form-group">
         <label class="form-checkbox">
-            <input type="checkbox" v-model='filter.hazards'>
-            <i class="form-icon"></i> Hazards
+            <input type="checkbox" v-model='filter.hazard'>
+            <i class="form-icon" style='top: 0.8rem;'></i>
+            <span style='user-select: none;'>
+                Hazards
+            </span>
+            <img src="{{ asset('images/hazard.png') }}" style='height: 50px; vertical-align: middle; display:inline-block;' alt="">
         </label>
     </div>
     <div class="form-group">
         <label class="form-checkbox">
-            <input type="checkbox" v-model='filter.threatening_incidents'>
-            <i class="form-icon"></i> Threatening Harrasment
+            <input type="checkbox" v-model='filter.threatening'>
+            <i class="form-icon" style='top: 0.8rem;'></i>
+            <span style='user-select: none;'>
+                Threatening Harrasment
+            </span>
+            <img src="{{ asset('images/incident.png') }}" style='height: 50px; vertical-align: middle; display:inline-block;' alt="">
         </label>
     </div>
     <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">Add</button>
@@ -53,8 +65,8 @@
                     <div class="form-group">
                         <label class="form-label text-bold">Choose Type</label>
                         <label class="form-radio form-inline">
-                            <input type="radio" name="type" value='accident' v-model='incident.type'>
-                            <i class="form-icon"></i> Accident
+                            <input type="radio" name="type" value='crash_near_miss' v-model='incident.type'>
+                            <i class="form-icon"></i> Crash / Near Miss
                         </label>
                         <label class="form-radio form-inline">
                             <input type="radio" name="type" value='threatening' v-model='incident.type'>
@@ -69,94 +81,96 @@
                         <div class='form-group'>
                             <label class="form-label text-bold">Type</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='vandalism' v-model='incident.threatening_type'>
+                                <input type="radio" value='vandalism' v-model='incident.threatening_data.type'>
                                 <i class="form-icon"></i> Vandalism
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='harassment' v-model='incident.threatening_type'>
+                                <input type="radio" value='harassment' v-model='incident.threatening_data.type'>
                                 <i class="form-icon"></i> Harassment
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='insecurity' v-model='incident.threatening_type'>
+                                <input type="radio" value='insecurity' v-model='incident.threatening_data.type'>
                                 <i class="form-icon"></i> Insecurity
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='other' v-model='incident.threatening_type'>
+                                <input type="radio" value='other' v-model='incident.threatening_data.type'>
                                 <i class="form-icon"></i> other
                             </label>
                         </div>
                     </div>
-                    <div class='app-accident-data'  v-if="incident.type == 'accident'">
+                    <div class='app-accident-data'  v-if="incident.type == 'crash_near_miss'">
+                        <div class='form-group'>
+                            <label class="form-label text-bold">Type</label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" value='crash' v-model='incident.crash_data.type'>
+                                <i class="form-icon"></i> Crash
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" value='near miss' v-model='incident.crash_data.type'>
+                                <i class="form-icon"></i> Near Miss
+                            </label>
+                        </div>
                         <div class='form-group'>
                             <label class="form-label text-bold">Number of involved</label>
-                            <label class='form-label form-inline'>
+                            <label class='form-label form-inline' style='max-width: 100px;'>
                                 Bikes
-                                <input class="form-input" type="number" v-model='incident.number_of_bikes'>
+                                <input class="form-input" type="text" style='max-width: 100px;' v-model='incident.crash_data.number_involved_bikes' @keypress="isNumber($event)">
                             </label>
                             <label class='form-label form-inline'>
                                 Vehicles
-                                <input class="form-input" type="number" v-model='incident.number_of_vehicles'>
+                                <input class="form-input" type="text" style='max-width: 100px;' v-model='incident.crash_data.number_involved_vehicles' @keypress="isNumber($event)">
                             </label>
                             <label class='form-label form-inline'>
                                 Pedesterians
-                                <input class="form-input" type="number" v-model='incident.number_of_pedesterians'>
+                                <input class="form-input" type="text" style='max-width: 100px;' v-model='incident.crash_data.number_involved_pedesterians' @keypress="isNumber($event)">
                             </label>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label text-bold">Are you involved in the accident?</label>
+                            <label class="form-label text-bold">Are you involved in the crash / near miss?</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.reporter_involved' v-bind:value="true">
+                                <input type="radio" v-model='incident.crash_data.reporter_involved' v-bind:value="true">
                                 <i class="form-icon"></i> Yes
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" name="incident.reporter_involved" v-bind:value="false">
+                                <input type="radio" v-model="incident.crash_data.reporter_involved" v-bind:value="false">
                                 <i class="form-icon"></i> No
                             </label>
                         </div>
 
-                        <div class='form-group'>
-                            <label class="form-label text-bold">Purpose of trip</label>
-
+                        <div class="form-group">
+                            <label class="form-label text-bold">Which of the following are you?</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='work' v-model="incident.purpose_of_trip">
-                                <i class="form-icon"></i> Work
+                                <input type="radio" v-model='incident.crash_data.reporter_type' value="pedesterian">
+                                <i class="form-icon"></i> Pedesterian
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='social_trip' v-model="incident.purpose_of_trip">
-                                <i class="form-icon"></i> Social trip
+                                <input type="radio" v-model='incident.crash_data.reporter_type' value="public transit user">
+                                <i class="form-icon"></i> Public Transit User
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='personal_business' v-model="incident.purpose_of_trip">
-                                <i class="form-icon"></i> Personal business
-                            </label>
-                        </div>
-
-                        <div class='form-group'>
-                            <label class="form-label text-bold">Collision</label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='intersection' v-model="incident.collision_at">
-                                <i class="form-icon"></i> Intersection
+                                <input type="radio" v-model='incident.crash_data.reporter_type' value="cyclist">
+                                <i class="form-icon"></i> Cyclist
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='roadway' v-model="incident.collision_at">
-                                <i class="form-icon"></i> Roadway
+                                <input type="radio" v-model='incident.crash_data.reporter_type' value="motorist">
+                                <i class="form-icon"></i> Motorist
                             </label>
                         </div>
-
+                        
                         <div class='form-group'>
                             <label class="form-label text-bold">Type of collision</label>
-                            <input class="form-input" type="text" v-model='incident.type_of_collision'>
+                            <input class="form-input" type="text" v-model='incident.crash_data.type_of_collision'>
                         </div>
 
                         <div class='form-group'>
                             <label class="form-label text-bold">Number of injuries</label>
-                            <input class="form-input" type="text" v-model='incident.number_of_injuries'>
+                            <input class="form-input" type="text" style='max-width: 100px;' v-model='incident.crash_data.number_of_injuries' @keypress="isNumber($event)">
                         </div>
 
                         <div class='form-group'>
                             <label class="form-label text-bold">Number of fatalities</label>
-                            <input class="form-input" type="text" v-model='incident.number_of_fatalities'>
+                            <input class="form-input" type="text" style='max-width: 100px;' v-model='incident.crash_data.number_of_fatalities' @keypress="isNumber($event)">
                         </div>
                     </div>
 
@@ -164,81 +178,29 @@
                         <div class='form-group'>
                             <label class='form-label text-bold'>Type</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='road' v-model="incident.hazard_type">
+                                <input type="radio" value='road' v-model="incident.hazard_data.type">
                                 <i class="form-icon"></i> Road
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='sidewalk' v-model="incident.hazard_type">
+                                <input type="radio" value='sidewalk' v-model="incident.hazard_data.type">
                                 <i class="form-icon"></i> Sidewalk
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='bus' v-model="incident.hazard_type">
+                                <input type="radio" value='bus' v-model="incident.hazard_data.type">
                                 <i class="form-icon"></i> Bus
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='bike_lane' v-model="incident.hazard_type">
+                                <input type="radio" value='bike lane' v-model="incident.hazard_data.type">
                                 <i class="form-icon"></i> Bike lane
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" value='other' v-model="incident.hazard_type">
+                                <input type="radio" value='other' v-model="incident.hazard_data.type">
                                 <i class="form-icon"></i> other
-                            </label>
-                        </div>
-                    </div>
-
-                    <div v-if="incident.type == 'accident' || incident.type == 'hazard'">
-                        <div class='form-group' >
-                            <label class="form-label text-bold">Type of road</label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='asphalt' v-model="incident.road_type"><i class="form-icon"></i> Asphalt
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='gravel' v-model="incident.road_type"><i class="form-icon"></i> Gravel
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='concrete' v-model="incident.road_type"><i class="form-icon"></i> Concrete
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='other' v-model="incident.road_type"><i class="form-icon"></i> other
-                            </label>
-                        </div>
-    
-    
-                        <div class='form-group'>
-                            <label class="form-label text-bold">Roadway surface condition</label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='dry' v-model="incident.road_surface_condition"><i class="form-icon"></i> Dry
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='muddy' v-model="incident.road_surface_condition"><i class="form-icon"></i> Muddy
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='wet' v-model="incident.road_surface_condition"><i class="form-icon"></i> Wet
-                            </label>
-                        </div>
-    
-                        <div class='form-group'>
-                            <label class="form-label text-bold">Weather</label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='sunny' v-model="incident.weather"><i class="form-icon"></i> Sunny
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='cloudy' v-model="incident.weather"><i class="form-icon"></i> Cloudy
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='rainy' v-model="incident.weather"><i class="form-icon"></i> Rainy
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='sand_storm' v-model="incident.weather"><i class="form-icon"></i> Sand Storm
-                            </label>
-                            <label class="form-radio form-inline">
-                                <input type="radio" value='foggy' v-model="incident.weather"><i class="form-icon"></i> Foggy
                             </label>
                         </div>
                     </div>
                     
                     <div v-show="incident.type">
-
                         <div class='form-group'>
                             <label class="form-label text-bold">Tell us more about what happened</label>
                             <textarea v-model="incident.description" class="form-input" cols="30" rows="3"></textarea>

@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model as MongoModel;
 
-class Hazard extends MongoModel
+class ThreateningIncident extends MongoModel
 {
     //
     protected $fillable = [
-        'placement'
+        'threatening_type'
     ];
 }

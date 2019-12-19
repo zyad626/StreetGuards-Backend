@@ -15,6 +15,11 @@
     </head>
     <body>
         <div class="container">
+            <header class="navbar">
+                <section class="navbar-section">
+                    <a href="..." class="navbar-brand mr-2">Contact us</a>
+                </section>
+            </header>
             @yield('content')
         </div>
     </body>
