@@ -11,7 +11,7 @@ class FilesController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'file' => 'file|max:100000'
+            'file' => 'file|max:200000'
         ]);
         $path = $request->file->store('files');
         $fileExtension = $request->file->getClientOriginalExtension();

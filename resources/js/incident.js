@@ -10,7 +10,7 @@ class Incident {
 
         this.description = null;
 
-        this.files = [];
+        this.file_ids = [];
     }
 }
 

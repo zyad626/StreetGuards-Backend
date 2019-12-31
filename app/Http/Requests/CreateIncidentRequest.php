@@ -27,8 +27,8 @@ class CreateIncidentRequest extends BaseRequest
             'date' => 'required',
             'location' => 'required',
             'type' => 'required',
-            'files' => 'array|max:10',
-            'files.*' => 'string|exists:files,_id',
+            'file_ids' => 'array|max:10',
+            'file_ids.*' => 'string|exists:files,_id',
 
             //Accident
             'crash_data.type' => "required_if:type,crash_near_miss|string|nullable",

@@ -49539,7 +49539,7 @@ var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
       url: "/api/files"
     });
     myDropZone.on('success', function (file, response) {
-      _this2.incident.files.push(response.id);
+      _this2.incident.file_ids.push(response.id);
     });
   }
 });
@@ -49664,7 +49664,7 @@ var Incident = function Incident() {
   this.hazard_data = {};
   this.threatening_data = {};
   this.description = null;
-  this.files = [];
+  this.file_ids = [];
 };
 
 

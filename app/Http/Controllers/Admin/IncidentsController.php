@@ -10,9 +10,14 @@ class IncidentsController extends Controller
     public function index(Request $request)
     {
         $type = $request->get('type');
-        $incidents = Incident::orderBy('id', 'desc')
-            ->where(['type' => $type])
+        $incidentsQuery = Incident::query();
+        if ($type) {
+            $incidentsQuery->where(['type' => $type]);
+        }
+
+        $incidents = $incidentsQuery->orderBy('_id', 'desc')
             ->paginate();
+        
         $data = [
             'incidents' => $incidents
         ];
@@ -25,7 +30,7 @@ class IncidentsController extends Controller
         $data = [
             'incident' => $incident
         ];
-
+        
         return view('admin.incidents.view', $data);
     }
 

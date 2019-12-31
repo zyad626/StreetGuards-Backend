@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model as MongoModel;
+
 
 class Incident extends MongoModel
 {
@@ -11,7 +11,6 @@ class Incident extends MongoModel
         'date',
         'location',
         'type',
-        'files',
         'description',
         'crash_data',
         'hazard_data',
@@ -20,6 +19,6 @@ class Incident extends MongoModel
 
     public function files()
     {
-        return $this->hasMany('App\Models\File');
+        return $this->belongsToMany('App\Models\File');
     }
 }

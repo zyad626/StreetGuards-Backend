@@ -15,6 +15,12 @@ class IncidentsController extends Controller
         $incident = new Incident;
         $incident->fill($incidentData);
         $incident->save();
+
+        if (!empty($incidentData['file_ids'])) {
+            $fileIds = $incidentData['file_ids'];
+            $incident->files()->attach($fileIds);
+        }
+        
         return $this->itemResponse($incident, new IncidentTransformer);
     }
 

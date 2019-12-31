@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model as MongoModel;
+
 
 class CrashNearMiss extends MongoModel
 {

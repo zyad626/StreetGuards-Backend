@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use Jenssegers\Mongodb\Eloquent\Model as MongoModel;
+
 
 class File extends MongoModel
 {
@@ -9,4 +9,13 @@ class File extends MongoModel
         'path'
     ];
 
+    public function isImage()
+    {
+        return $this->type == 'image' ? true : false;
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->_id.'.'.$this->extension;
+    }
 }

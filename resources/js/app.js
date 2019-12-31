@@ -68,7 +68,7 @@ var form = new Vue({
             }).data('datepicker');
             myDropZone = new Dropzone("div#files-uploader", { url: "/api/files"});
             myDropZone.on('success', (file, response) => {
-                this.incident.files.push(response.id);
+                this.incident.file_ids.push(response.id);
             });
         }
     });

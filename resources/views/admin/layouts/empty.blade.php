@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <title>@yield('title') | Wheels </title>
+        <title>@yield('title') | Crowd4S Control Panel </title>
 
         <link rel="stylesheet" href="{{ mix('/admin_assets/css/app.css') }}">
     </head>

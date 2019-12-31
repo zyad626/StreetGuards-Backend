@@ -38,7 +38,19 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
      */
     Route::prefix('incidents')->group(function () {
         Route::get('/', 'IncidentsController@index')->name('admin.incidents');
-        Route::get('/view', 'IncidentsController@view')->name('admin.incidents.view');
+        Route::get('/view/{id}', 'IncidentsController@view')->name('admin.incidents.view');
+    });
+
+    /**
+     * Files
+     */
+    Route::prefix('files')->group(function () {
+        Route::get('/view/{id}', 'FilesController@view')->name('admin.files.view');
+    });
+
+    Route::prefix('map')->group(function () {
+        Route::get('/', 'MapsController@index')->name('admin.map');
+        Route::get('/incidents', 'MapsController@incidents')->name('admin.map.incidents');
     });
 
     /**
