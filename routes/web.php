@@ -62,7 +62,23 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('site.home');
+    $lat = 30.272662;
+    $lng = 31.393483;
+    $zoom = 8;
+    
+    if (false) {
+        $ipAddress = '105.36.4.227';
+        $lat = $location['latitude'];
+        $lng = $location['longitude'];
+        $zoom = 16;
+    }
+
+    $data = [
+        'lat' => $lat,
+        'lng' => $lng,
+        'zoomLevel' => $zoom
+    ];
+    return view('site.home', $data);
 })->name('site.home');
 
 

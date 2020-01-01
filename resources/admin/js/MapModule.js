@@ -16,7 +16,7 @@ class MapModule
         this.center = {lat: 30.051736, lng: 31.234426};
         this.map = new google.maps.Map(
             document.getElementById('map'), {
-                zoom: 16,
+                zoom: 2,
                 center: this.center,
                 disableDefaultUI: true,
                 styles: MapStyle

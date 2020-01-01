@@ -3,7 +3,11 @@
 @section('title', __('Home'))
 
 @section('content')
-<div class='Map-Module' id='map'></div>
+<div class='Map-Module' id='map'
+    data-lat='{{ $lat }}'
+    data-lng='{{ $lng }}'
+    data-zoom='{{ $zoomLevel }}'
+></div>
 
 
 <div class='actions'>

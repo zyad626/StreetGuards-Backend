@@ -2,7 +2,6 @@ import axios from 'axios';
 
 class CrashMapperClient {
     constructor() {
-        // this.baseurl = 'http://crashmapper.voxelvention.com/api';
         this.baseurl = '/admin/map';
         this.httpClient = axios.create({
             baseURL: this.baseurl

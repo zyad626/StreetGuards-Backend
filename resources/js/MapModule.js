@@ -1,4 +1,5 @@
 import MarkerCluster from '@google/markerclusterer';
+import $ from 'jquery';
 import MapStyle from './MapStyle';
 class MapModule
 {
@@ -12,10 +13,13 @@ class MapModule
     }
 
     initialize() {
-        this.center = {lat: 30.051736, lng: 31.234426};
+        var lat = $('#map').data('lat');
+        var lng = $('#map').data('lng');
+        var zoomLevel = $('#map').data('zoom');
+        this.center = {lat: lat, lng: lng};
         this.map = new google.maps.Map(
             document.getElementById('map'), {
-                zoom: 16,
+                zoom: zoomLevel,
                 center: this.center,
                 disableDefaultUI: true,
                 styles: MapStyle
@@ -27,8 +31,15 @@ class MapModule
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 var currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                this.map.setCenter(currentLocation);
-                var marker = new google.maps.Marker({position: currentLocation, map: this.map});
+                this.map.panTo(currentLocation);
+                setTimeout(_ => {
+                    this.map.setZoom(12);
+                }, 100);
+                var marker = new google.maps.Marker({
+                    position: currentLocation,
+                    map: this.map,
+                    icon: "images/current_location.png"
+                });
             });
         }
     }
