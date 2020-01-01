@@ -14,9 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['namespace' => 'API'], function () {
-    Route::post('/incidents', 'IncidentsController@create');
+    Route::middleware('throttle:10,1')->post('/incidents', 'IncidentsController@create');
     
     Route::get('/incidents', 'IncidentsController@list');
 
-    Route::post('/files', 'FilesController@create');
+    Route::middleware('throttle:50,1')->post('/files', 'FilesController@create');
 });
