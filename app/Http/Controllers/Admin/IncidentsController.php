@@ -40,4 +40,11 @@ class IncidentsController extends Controller
         $incidents = Incident::orderBy('id', 'desc')->paginate(1);
         
     }
+
+    public function delete($id)
+    {
+        $incident = Incident::find($id);
+        Incident::destroy($id);
+        return redirect(route('admin.incidents', ['type' => $incident->type]));
+    }
 }

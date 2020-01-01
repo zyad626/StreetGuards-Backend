@@ -14,12 +14,14 @@
         
     </head>
     <body>
+        <header>
+            <div class='header-menu'>
+                <span class='item logo'>STREET GAURDS</span>
+                <a href="{{ route('site.home') }}" class="item">Home</a>
+                <a href="{{ route('site.contactus') }}" class="item">Contact us</a>
+            </div>
+        </header>
         <div class="container">
-            <header class="navbar">
-                <section class="navbar-section">
-                    <a href="..." class="navbar-brand mr-2">Contact us</a>
-                </section>
-            </header>
             @yield('content')
         </div>
     </body>

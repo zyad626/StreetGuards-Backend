@@ -48,9 +48,6 @@ class CreateIncidentRequest extends BaseRequest
             'threatening_data.type' => "required_if:type,threatening|string|nullable",
 
             //General
-            'road_type' => "required_if:type,hazard,accident|string|nullable",
-            'road_surface_condition' => "required_if:type,hazard,accident|string|nullable",
-            'weather' => "required_if:type,hazard,accident|string|nullable",
             'description' => "string|nullable"
         ];
     }

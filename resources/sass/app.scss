@@ -1,21 +1,17 @@
+$primary-color: #70a289;
+$dark-color: #1a251f;
+$error-color: #b93f3f;
 //
 @import 'modules/map.scss';
 @import 'spectre.css/src/spectre.scss';
 @import 'air-datepicker/dist/css/datepicker';
 @import 'dropzone/dist/dropzone';
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import 'modules/menu.scss';
 
 body {
     background-color: #f7f7f7;
     font-family: 'Muli', sans-serif;
-}
-
-#map {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 40px;
-    bottom: 0;
 }
 
 .Map-Filter {
@@ -59,4 +55,15 @@ body {
 
 .modal.active .modal-overlay {
     position: fixed;
+}
+
+.actions {
+    position: absolute;
+    z-index: 10000;
+    left: 30px;
+    top: 80px;
+    text-align: right;
+    .btn {
+        display: inline-block;
+    }
 }

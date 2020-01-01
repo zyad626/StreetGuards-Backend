@@ -37,6 +37,13 @@
                         <i class='ui eye icon'></i>
                         {{ __('admin_incidents.view') }}
                     </a>
+                    <a 
+                        class='ui small red button' href="{{ route('admin.incidents.delete', $incident->id) }}"
+                        onclick = 'return confirm("Are you sure?");' 
+                    >
+                        <i class='ui close icon'></i>
+                        {{ __('admin_incidents.delete') }}
+                    </a>
                 </td>
             </tr>
             @endforeach

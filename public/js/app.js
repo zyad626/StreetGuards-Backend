@@ -49248,11 +49248,13 @@ function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MapModule; });
 /* harmony import */ var _google_markerclusterer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @google/markerclusterer */ "./node_modules/@google/markerclusterer/dist/markerclusterer.esm.js");
+/* harmony import */ var _MapStyle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MapStyle */ "./resources/js/MapStyle.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -49281,7 +49283,9 @@ function () {
       };
       this.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
-        center: this.center
+        center: this.center,
+        disableDefaultUI: true,
+        styles: _MapStyle__WEBPACK_IMPORTED_MODULE_1__["default"]
       });
       this.cluster = new _google_markerclusterer__WEBPACK_IMPORTED_MODULE_0__["default"](this.map);
 
@@ -49445,6 +49449,165 @@ function () {
 
 /***/ }),
 
+/***/ "./resources/js/MapStyle.js":
+/*!**********************************!*\
+  !*** ./resources/js/MapStyle.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MapStyle; });
+var MapStyle = [{
+  "featureType": "all",
+  "elementType": "all",
+  "stylers": [{
+    "visibility": "on"
+  }]
+}, {
+  "featureType": "all",
+  "elementType": "geometry.fill",
+  "stylers": [{
+    "color": "#ffffff"
+  }]
+}, {
+  "featureType": "all",
+  "elementType": "labels.text.fill",
+  "stylers": [{
+    "saturation": 36
+  }, {
+    "color": "#333333"
+  }, {
+    "lightness": 40
+  }]
+}, {
+  "featureType": "all",
+  "elementType": "labels.text.stroke",
+  "stylers": [{
+    "visibility": "on"
+  }, {
+    "color": "#ffffff"
+  }, {
+    "lightness": 16
+  }]
+}, {
+  "featureType": "all",
+  "elementType": "labels.icon",
+  "stylers": [{
+    "visibility": "off"
+  }]
+}, {
+  "featureType": "administrative",
+  "elementType": "geometry.fill",
+  "stylers": [{
+    "visibility": "on"
+  }]
+}, {
+  "featureType": "administrative",
+  "elementType": "geometry.stroke",
+  "stylers": [{
+    "color": "#fefefe"
+  }, {
+    "lightness": 17
+  }, {
+    "weight": 1.2
+  }]
+}, {
+  "featureType": "administrative.locality",
+  "elementType": "geometry",
+  "stylers": [{
+    "color": "#c33939"
+  }]
+}, {
+  "featureType": "administrative.locality",
+  "elementType": "labels.icon",
+  "stylers": [{
+    "visibility": "on"
+  }]
+}, {
+  "featureType": "landscape",
+  "elementType": "geometry",
+  "stylers": [{
+    "lightness": 20
+  }, {
+    "color": "#f0fcf7"
+  }]
+}, {
+  "featureType": "poi",
+  "elementType": "geometry",
+  "stylers": [{
+    "color": "#f5f5f5"
+  }, {
+    "lightness": 21
+  }]
+}, {
+  "featureType": "poi",
+  "elementType": "geometry.fill",
+  "stylers": [{
+    "color": "#f0fcf7"
+  }]
+}, {
+  "featureType": "poi.park",
+  "elementType": "geometry",
+  "stylers": [{
+    "color": "#f0fcf7"
+  }, {
+    "lightness": 21
+  }]
+}, {
+  "featureType": "road.highway",
+  "elementType": "geometry.fill",
+  "stylers": [{
+    "color": "#ffffff"
+  }, {
+    "lightness": 17
+  }]
+}, {
+  "featureType": "road.highway",
+  "elementType": "geometry.stroke",
+  "stylers": [{
+    "color": "#ffffff"
+  }, {
+    "lightness": 29
+  }, {
+    "weight": 0.2
+  }]
+}, {
+  "featureType": "road.arterial",
+  "elementType": "geometry",
+  "stylers": [{
+    "color": "#ffffff"
+  }, {
+    "lightness": 18
+  }]
+}, {
+  "featureType": "road.local",
+  "elementType": "geometry",
+  "stylers": [{
+    "lightness": 16
+  }]
+}, {
+  "featureType": "transit",
+  "elementType": "geometry",
+  "stylers": [{
+    "color": "#f2f2f2"
+  }, {
+    "lightness": 19
+  }]
+}, {
+  "featureType": "water",
+  "elementType": "geometry",
+  "stylers": [{
+    "color": "#e2f6fe"
+  }, {
+    "lightness": 17
+  }]
+}];
+
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -49477,133 +49640,135 @@ __webpack_require__(/*! air-datepicker/dist/js/datepicker */ "./node_modules/air
 
 __webpack_require__(/*! air-datepicker/dist/js/i18n/datepicker.en */ "./node_modules/air-datepicker/dist/js/i18n/datepicker.en.js");
 
-var map = new _MapModule__WEBPACK_IMPORTED_MODULE_0__["default"]();
-var crashMapperClient = new _CrashMapperClient__WEBPACK_IMPORTED_MODULE_1__["default"]();
-dropzone__WEBPACK_IMPORTED_MODULE_5___default.a.autoDiscover = false;
-var myDropZone;
-var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
-  el: '#add-incident-modal',
-  data: {
-    incident: new _incident__WEBPACK_IMPORTED_MODULE_4__["default"](),
-    errors: []
-  },
-  methods: {
-    save: function save(event) {
-      var _this = this;
-
-      crashMapperClient.post('incidents', this.incident).then(function (incident) {
-        jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').removeClass('active');
-        map.addToGroup(incident.type, incident);
-        myDropZone.removeAllFiles(true);
-      })["catch"](function (e) {
-        if (e.response) {
-          console.log(e.response.data);
-          _this.errors = e.response.data.errors;
-        }
-      });
+if (jquery__WEBPACK_IMPORTED_MODULE_2___default()('#map').length > 0) {
+  var map = new _MapModule__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  var crashMapperClient = new _CrashMapperClient__WEBPACK_IMPORTED_MODULE_1__["default"]();
+  dropzone__WEBPACK_IMPORTED_MODULE_5___default.a.autoDiscover = false;
+  var myDropZone;
+  var form = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
+    el: '#add-incident-modal',
+    data: {
+      incident: new _incident__WEBPACK_IMPORTED_MODULE_4__["default"](),
+      errors: []
     },
-    isNumber: function isNumber(evt) {
-      evt = evt ? evt : window.event;
-      var charCode = evt.which ? evt.which : evt.keyCode;
+    methods: {
+      save: function save(event) {
+        var _this = this;
 
-      if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
-        evt.preventDefault();
-        ;
-      } else {
+        crashMapperClient.post('incidents', this.incident).then(function (incident) {
+          jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').removeClass('active');
+          map.addToGroup(incident.type, incident);
+          myDropZone.removeAllFiles(true);
+        })["catch"](function (e) {
+          if (e.response) {
+            console.log(e.response.data);
+            _this.errors = e.response.data.errors;
+          }
+        });
+      },
+      isNumber: function isNumber(evt) {
+        evt = evt ? evt : window.event;
+        var charCode = evt.which ? evt.which : evt.keyCode;
+
+        if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+          evt.preventDefault();
+          ;
+        } else {
+          return true;
+        }
+      },
+      checkForm: function checkForm(e) {
+        e.preventDefault();
+      }
+    },
+    computed: {
+      valid: function valid() {
+        // must parse because Vue turns empty value to string
         return true;
       }
     },
-    checkForm: function checkForm(e) {
-      e.preventDefault();
-    }
-  },
-  computed: {
-    valid: function valid() {
-      // must parse because Vue turns empty value to string
-      return true;
-    }
-  },
-  mounted: function mounted() {
-    var _this2 = this;
+    mounted: function mounted() {
+      var _this2 = this;
 
-    var $date = jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal .app-date');
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal .app-date').datepicker({
-      language: 'en',
-      dateFormat: 'yyyy-mm-dd',
-      autoClose: true,
-      onSelect: function onSelect(formattedDate, date, inst) {
-        _this2.incident.date = formattedDate;
-      }
-    }).data('datepicker');
-    myDropZone = new dropzone__WEBPACK_IMPORTED_MODULE_5___default.a("div#files-uploader", {
-      url: "/api/files"
-    });
-    myDropZone.on('success', function (file, response) {
-      _this2.incident.file_ids.push(response.id);
-    });
-  }
-});
-var isLoading = {};
-
-var loadIncidents = function loadIncidents(type, newVal) {
-  if (newVal) {
-    if (!isLoading[type]) {
-      isLoading[type] = true;
-      crashMapperClient.get('incidents', {
-        'type': type
-      }).then(function (data) {
-        isLoading[type] = false;
-
-        if (mapFilter.filter[type]) {
-          map.addGroup(type, data.data);
+      var $date = jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal .app-date');
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal .app-date').datepicker({
+        language: 'en',
+        dateFormat: 'yyyy-mm-dd',
+        autoClose: true,
+        onSelect: function onSelect(formattedDate, date, inst) {
+          _this2.incident.date = formattedDate;
         }
+      }).data('datepicker');
+      myDropZone = new dropzone__WEBPACK_IMPORTED_MODULE_5___default.a("div#files-uploader", {
+        url: "/api/files"
+      });
+      myDropZone.on('success', function (file, response) {
+        _this2.incident.file_ids.push(response.id);
       });
     }
-  } else {
-    map.removeGroup(type);
-  }
-};
-
-var mapFilter = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
-  el: '#map_filter',
-  data: {
-    filter: {
-      'crash_near_miss': true,
-      'hazard': true,
-      'threatening': true
-    }
-  },
-  mounted: function mounted() {
-    loadIncidents('crash_near_miss', true);
-    loadIncidents('hazard', true);
-    loadIncidents('threatening', true);
-  }
-});
-mapFilter.$watch('filter.crash_near_miss', function (newVal, oldVal) {
-  loadIncidents('crash_near_miss', newVal);
-});
-mapFilter.$watch('filter.hazard', function (newVal, oldVal) {
-  loadIncidents('hazard', newVal);
-});
-mapFilter.$watch('filter.threatening', function (newVal, oldVal) {
-  loadIncidents('threatening', newVal);
-});
-jquery__WEBPACK_IMPORTED_MODULE_2___default()('#app-add-incident').on('click', function (e) {
-  map.chooseLocation().then(function (location) {
-    form.incident = new _incident__WEBPACK_IMPORTED_MODULE_4__["default"]();
-    form.errors = [];
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').addClass('active');
-    var myDatepicker = jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal .app-date').datepicker().data('datepicker');
-    myDatepicker.selectDate(new Date());
-    form.incident.location = {
-      lat: location.lat(),
-      lng: location.lng()
-    };
   });
-});
-jquery__WEBPACK_IMPORTED_MODULE_2___default()('.app-close').click(function (_) {
-  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').removeClass('active');
-});
+  var isLoading = {};
+
+  var loadIncidents = function loadIncidents(type, newVal) {
+    if (newVal) {
+      if (!isLoading[type]) {
+        isLoading[type] = true;
+        crashMapperClient.get('incidents', {
+          'type': type
+        }).then(function (data) {
+          isLoading[type] = false;
+
+          if (mapFilter.filter[type]) {
+            map.addGroup(type, data.data);
+          }
+        });
+      }
+    } else {
+      map.removeGroup(type);
+    }
+  };
+
+  var mapFilter = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
+    el: '#map_filter',
+    data: {
+      filter: {
+        'crash_near_miss': true,
+        'hazard': true,
+        'threatening': true
+      }
+    },
+    mounted: function mounted() {
+      loadIncidents('crash_near_miss', true);
+      loadIncidents('hazard', true);
+      loadIncidents('threatening', true);
+    }
+  });
+  mapFilter.$watch('filter.crash_near_miss', function (newVal, oldVal) {
+    loadIncidents('crash_near_miss', newVal);
+  });
+  mapFilter.$watch('filter.hazard', function (newVal, oldVal) {
+    loadIncidents('hazard', newVal);
+  });
+  mapFilter.$watch('filter.threatening', function (newVal, oldVal) {
+    loadIncidents('threatening', newVal);
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_2___default()('#app-add-incident').on('click', function (e) {
+    map.chooseLocation().then(function (location) {
+      form.incident = new _incident__WEBPACK_IMPORTED_MODULE_4__["default"]();
+      form.errors = [];
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').addClass('active');
+      var myDatepicker = jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal .app-date').datepicker().data('datepicker');
+      myDatepicker.selectDate(new Date());
+      form.incident.location = {
+        lat: location.lat(),
+        lng: location.lng()
+      };
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_2___default()('.app-close').click(function (_) {
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()('#add-incident-modal').removeClass('active');
+  });
+}
 
 /***/ }),
 

@@ -100,6 +100,19 @@
                     <td>{{ $crashData['number_of_fatalities'] }}</td>
                 </tr>
             @endif
+            @if ($incident->type == 'hazard')
+            <tr>
+                <td><b>Type</b></td>
+                <td>{{ $incident->hazard_data['type'] }}</td>
+            </tr>
+            @endif
+
+            @if ($incident->type == 'threatening')
+            <tr>
+                <td><b>Type</b></td>
+                <td>{{ $incident->threatening_data['type'] }}</td>
+            </tr>
+            @endif
 
             <tr>
                 <td><b>Description</b></td>

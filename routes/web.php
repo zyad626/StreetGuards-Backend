@@ -39,13 +39,14 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::prefix('incidents')->group(function () {
         Route::get('/', 'IncidentsController@index')->name('admin.incidents');
         Route::get('/view/{id}', 'IncidentsController@view')->name('admin.incidents.view');
+        Route::get('/delete/{id}', 'IncidentsController@delete')->name('admin.incidents.delete');
     });
 
     /**
      * Files
      */
     Route::prefix('files')->group(function () {
-        Route::get('/view/{id}', 'FilesController@view')->name('admin.files.view');
+        Route::get('/view/{vid}', 'FilesController@view')->name('admin.files.view');
     });
 
     Route::prefix('map')->group(function () {
@@ -64,3 +65,7 @@ Route::get('/', function () {
     return view('site.home');
 })->name('site.home');
 
+
+Route::get('/contact-us', function () {
+    return view('site.contact_us');
+})->name('site.contactus');

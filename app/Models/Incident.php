@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Incident extends MongoModel
 {
+    use SoftDeletes;
     //
     protected $fillable = [
         'date',
@@ -14,7 +15,7 @@ class Incident extends MongoModel
         'description',
         'crash_data',
         'hazard_data',
-        'incident_data',
+        'threatening_data',
     ];
 
     public function files()

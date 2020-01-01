@@ -5,38 +5,43 @@
 @section('content')
 <div class='Map-Module' id='map'></div>
 
+
+<div class='actions'>
+    <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">Report Incident</button>
+</div>
 <div class='Map-Filter' id='map_filter'>
+
+    <h5>Filter</h5>
     <div class="form-group">
         <label class="form-checkbox">
             <input type="checkbox" v-model='filter.crash_near_miss'>
-            <i class="form-icon" style='top: 0.8rem;'></i>
-            <span style='user-select: none;'>
+            <i class="form-icon" ></i>
+            <img src="{{ asset('images/accident_n_icon.png') }}" style='height: 20px; display:inline-block;' alt="">
+            <span style='user-select: none; '>
                 Crash / Near Miss
             </span>
-            <img src="{{ asset('images/crash.png') }}" style='height: 50px; vertical-align: middle; display:inline-block;' alt="">
         </label>
     </div>
     <div class="form-group">
         <label class="form-checkbox">
             <input type="checkbox" v-model='filter.hazard'>
-            <i class="form-icon" style='top: 0.8rem;'></i>
+            <i class="form-icon"></i>
+            <img src="{{ asset('images/hazard_n_icon.png') }}" style='height: 20px; vertical-align: middle; display:inline-block;' alt="">
             <span style='user-select: none;'>
                 Hazards
             </span>
-            <img src="{{ asset('images/hazard.png') }}" style='height: 50px; vertical-align: middle; display:inline-block;' alt="">
         </label>
     </div>
     <div class="form-group">
         <label class="form-checkbox">
             <input type="checkbox" v-model='filter.threatening'>
-            <i class="form-icon" style='top: 0.8rem;'></i>
+            <i class="form-icon" style=''></i>
+            <img src="{{ asset('images/threatening_n_icon.png') }}" style='height: 20px; display:inline-block;' alt="">
             <span style='user-select: none;'>
-                Threatening Harrasment
+                Threatening Incident
             </span>
-            <img src="{{ asset('images/incident.png') }}" style='height: 50px; vertical-align: middle; display:inline-block;' alt="">
         </label>
     </div>
-    <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">Add</button>
 
 </div>
 

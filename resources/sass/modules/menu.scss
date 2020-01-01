@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+.header-menu {
+    display: block;
+    background-color: #70a289;
+    color: #fff;
+    .item {
+        display: inline-block;
+        padding: 0 10px;
+        line-height: 60px;
+        text-decoration: none;
+        color: #fff;
+        &.logo {
+            font-size: 1.3em;
+            letter-spacing: 5px;
+            line-height: 40px;
+            background-color: #5d9277;
+
+            &:hover {
+                background-color: #5d9277;
+            }
+        }
+
+        &:hover {
+            background-color: #5d9277;
+        }
+        transition: background-color 0.3s;
+    }
+}
