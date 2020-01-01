@@ -35,7 +35,7 @@ class CreateIncidentRequest extends BaseRequest
             'crash_data.number_involved_vehicles' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.number_involved_bikes' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.number_involved_pedesterians' => "required_if:type,crash_near_miss|integer|nullable",
-            'crash_data.type_of_collision' => "required_if:type,crash_near_miss|string|nullable",
+            'crash_data.type_of_collision' => "string|nullable",
             'crash_data.number_of_injuries' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.number_of_fatalities' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.reporter_involved' => "required_if:type,crash_near_miss|boolean|nullable",
