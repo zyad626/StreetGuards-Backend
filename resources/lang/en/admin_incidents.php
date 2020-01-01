@@ -9,17 +9,20 @@ return array (
   'type' => 'Type',
   'location' => 'Location',
   'view' => 'view',
-  'incidents_type_icons' => [
-    'crash_near_miss' => 'car',   
-    'hazard' => 'road',   
-    'threatening' => 'frown',   
-  ],
-  'incidents_types' => [
-    'crash_near_miss' => 'Crash / Near Miss',   
-    'hazard' => 'Hazard',   
-    'threatening' => 'Threatening Incident',   
-  ],
-  'threatening' => 'Threatening Incident',
-  'hazard' => 'Hazard',
+  'delete' => 'Delete',
+  'threatening' => 'Threatening',
+  'incidents_types' => 
+  array (
+    'threatening' => 'Threatening',
+    'crash_near_miss' => 'Crash / Near Miss',
+    'hazard' => 'Hazards',
+  ),
   'crash_near_miss' => 'Crash / Near Miss',
+  'hazard' => 'Hazard',
+  'incidents_type_icons' => 
+  array (
+    'crash_near_miss' => 'car',
+    'hazard' => 'road',
+    'threatening' => 'frown',
+  ),
 );

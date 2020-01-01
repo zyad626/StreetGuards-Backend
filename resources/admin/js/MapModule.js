@@ -1,4 +1,5 @@
 import MarkerCluster from '@google/markerclusterer';
+import MapStyle from '../../js/MapStyle';
 
 class MapModule
 {
@@ -14,7 +15,12 @@ class MapModule
     initialize() {
         this.center = {lat: 30.051736, lng: 31.234426};
         this.map = new google.maps.Map(
-            document.getElementById('map'), {zoom: 16, center: this.center}
+            document.getElementById('map'), {
+                zoom: 16,
+                center: this.center,
+                disableDefaultUI: true,
+                styles: MapStyle
+            }
         );
 
         this.cluster = new MarkerCluster(this.map);
