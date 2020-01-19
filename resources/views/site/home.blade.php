@@ -32,7 +32,7 @@
             <i class="form-icon"></i>
             <img src="{{ asset('images/hazard_n_icon.png') }}" style='height: 20px; vertical-align: middle; display:inline-block;' alt="">
             <span style='user-select: none;'>
-                Hazards
+                Infrastructure Hazard / Inconvenience
             </span>
         </label>
     </div>
@@ -83,7 +83,7 @@
                         </label>
                         <label class="form-radio form-inline">
                             <input type="radio" name="type" value='hazard' v-model='incident.type'>
-                            <i class="form-icon"></i> Hazard
+                            <i class="form-icon"></i> Infrastructure Hazard / Inconvenience
                         </label>
                     </div>
                     <div class='app-accident-data'  v-if="incident.type == 'threatening'">
