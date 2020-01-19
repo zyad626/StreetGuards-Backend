@@ -64,7 +64,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 Route::get('/', function () {
     $lat = 30.272662;
     $lng = 31.393483;
-    $zoom = 8;
+    $zoom =  2;
     
     if (false) {
         $ipAddress = '105.36.4.227';
