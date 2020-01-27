@@ -23,6 +23,17 @@
             <tbody>
 
             <tr>
+                <td><b>Contact</b></td>
+                <td>
+                    @if ($incident->contact)
+                    <div class='ui label'>
+                        <i class='icon user'></i> 
+                        {{ $incident->contact }}
+                    </div>
+                    @endif
+                </td>
+            </tr>
+            <tr>
                 <td><b>Location</b></td>
                 <td>
                     <div class='ui label'>
@@ -88,6 +99,20 @@
                     <td>
                         <i class="ui icon {{ __('admin_incidents.reporter_type_icons.'.$reporterType) }}"></i>                    
                         {{ $reporterType }}
+                    </td>
+                </tr>
+                @endif
+                @if (!empty($crashData['type_of_collision']))
+                <tr>
+                    <td><b>Type of Collision</b></td>
+                    <td>                  
+                        {{ $crashData['type_of_collision'] }}
+                        <div class='ui label'>
+                            @if ($crashData['type_of_collision_explain']) 
+                                {{ $crashData['type_of_collision_explain'] }}
+                            @endif
+                        </div>
+
                     </td>
                 </tr>
                 @endif

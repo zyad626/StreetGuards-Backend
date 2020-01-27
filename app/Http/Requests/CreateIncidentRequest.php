@@ -27,6 +27,7 @@ class CreateIncidentRequest extends BaseRequest
             'date' => 'required',
             'location' => 'required',
             'type' => 'required',
+            'contact' => 'string',
             'file_ids' => 'array|max:10',
             'file_ids.*' => 'string|exists:files,_id',
 
@@ -36,6 +37,7 @@ class CreateIncidentRequest extends BaseRequest
             'crash_data.number_involved_bikes' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.number_involved_pedesterians' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.type_of_collision' => "string|nullable",
+            'crash_data.type_of_collision_explain' => "string|nullable",
             'crash_data.number_of_injuries' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.number_of_fatalities' => "required_if:type,crash_near_miss|integer|nullable",
             'crash_data.reporter_involved' => "required_if:type,crash_near_miss|boolean|nullable",
@@ -58,6 +60,7 @@ class CreateIncidentRequest extends BaseRequest
             'date',
             'location',
             'type',
+            'contact',
             'files',
             
             //Accident

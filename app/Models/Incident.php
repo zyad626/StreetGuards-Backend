@@ -13,6 +13,7 @@ class Incident extends MongoModel
         'location',
         'type',
         'description',
+        'contact',
         'crash_data',
         'hazard_data',
         'threatening_data',

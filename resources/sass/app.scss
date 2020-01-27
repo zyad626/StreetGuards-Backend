@@ -7,11 +7,13 @@ $error-color: #b93f3f;
 @import 'air-datepicker/dist/css/datepicker';
 @import 'dropzone/dist/dropzone';
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Oleo+Script&display=swap'); */
 @import 'modules/menu.scss';
 
 body {
     background-color: #f7f7f7;
     font-family: 'Muli', sans-serif;
+    /* font-family: 'Oleo Script', cursive; */
 }
 
 .Map-Filter {
@@ -61,9 +63,16 @@ body {
     position: absolute;
     z-index: 10000;
     left: 30px;
-    top: 80px;
+    top: 120px;
     text-align: right;
     .btn {
         display: inline-block;
+    }
+}
+
+.section {
+    padding: 40px;
+    p {
+        margin-bottom: 40px;
     }
 }

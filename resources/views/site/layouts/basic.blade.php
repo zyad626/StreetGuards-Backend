@@ -16,9 +16,14 @@
     <body>
         <header>
             <div class='header-menu'>
-                <span class='item logo'>STREET GAURDS</span>
+                <span class="item logo">
+                    STREET GAURDS
+                    <div class="description">
+                        A Crowd Sourcing Tool for Safer, Securer, and Better Structured Streets
+                    </div>
+                </span>
                 <a href="{{ route('site.home') }}" class="item">Home</a>
-                <a href="{{ route('site.contactus') }}" class="item">Contact us</a>
+                <a href="{{ route('site.about-us') }}" class="item">About us</a>
             </div>
         </header>
         <div class="container">

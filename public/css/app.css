@@ -5,7 +5,7 @@
   left: 0;
   right: 0px;
   bottom: 0px;
-  top: 60px;
+  top: 80px;
 }
 
 /*! Spectre.css v0.5.8 | MIT License | github.com/picturepan2/spectre */
@@ -5384,6 +5384,8 @@ a.text-error:visited {
   border-bottom: 6px solid #be2626;
 }
 
+/* @import url('https://fonts.googleapis.com/css?family=Oleo+Script&display=swap'); */
+
 .header-menu {
   display: block;
   background-color: #70a289;
@@ -5391,9 +5393,10 @@ a.text-error:visited {
 }
 
 .header-menu .item {
+  vertical-align: middle;
   display: inline-block;
   padding: 0 10px;
-  line-height: 60px;
+  line-height: 80px;
   text-decoration: none;
   color: #fff;
   -webkit-transition: background-color 0.3s;
@@ -5407,6 +5410,12 @@ a.text-error:visited {
   background-color: #5d9277;
 }
 
+.header-menu .item.logo .description {
+  letter-spacing: 0;
+  font-size: 13px;
+  line-height: 20px;
+}
+
 .header-menu .item.logo:hover {
   background-color: #5d9277;
 }
@@ -5418,6 +5427,7 @@ a.text-error:visited {
 body {
   background-color: #f7f7f7;
   font-family: "Muli", sans-serif;
+  /* font-family: 'Oleo Script', cursive; */
 }
 
 .Map-Filter {
@@ -5471,11 +5481,19 @@ body {
   position: absolute;
   z-index: 10000;
   left: 30px;
-  top: 80px;
+  top: 120px;
   text-align: right;
 }
 
 .actions .btn {
   display: inline-block;
+}
+
+.section {
+  padding: 40px;
+}
+
+.section p {
+  margin-bottom: 40px;
 }
 

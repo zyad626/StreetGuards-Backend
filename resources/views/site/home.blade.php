@@ -11,11 +11,11 @@
 
 
 <div class='actions'>
-    <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">Report Incident</button>
+    <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">Locate & Report</button>
 </div>
 <div class='Map-Filter' id='map_filter'>
 
-    <h5>Filter</h5>
+    <h5>Preview</h5>
     <div class="form-group">
         <label class="form-checkbox">
             <input type="checkbox" v-model='filter.crash_near_miss'>
@@ -169,7 +169,31 @@
                         
                         <div class='form-group'>
                             <label class="form-label text-bold">Type of collision</label>
-                            <input class="form-input" type="text" v-model='incident.crash_data.type_of_collision'>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Rear">
+                                <i class="form-icon"></i> Rear
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="End-Head">
+                                <i class="form-icon"></i> End-Head
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="On-Side">
+                                <i class="form-icon"></i> On-Side
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Swipe-Overtaking-Right">
+                                <i class="form-icon"></i> Swipe-Overtaking-Right
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Turn-Left">
+                                <i class="form-icon"></i> Turn-Left 
+                            </label>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Turn-Other">
+                                <i class="form-icon"></i> Turn-Other 
+                            </label>
+                            <textarea v-model="incident.crash_data.type_of_collision_explain"  v-if="incident.crash_data.type_of_collision == 'Turn-Other'" class="form-input" cols="30" rows="2" placeholder="Explain"></textarea>
                         </div>
 
                         <div class='form-group'>
@@ -213,6 +237,14 @@
                         <div class='form-group'>
                             <label class="form-label text-bold">Tell us more about what happened</label>
                             <textarea v-model="incident.description" class="form-input" cols="30" rows="3"></textarea>
+                        </div>
+    
+                        <div class='form-group'>
+                            <label class="form-label text-bold">
+                                Kindly provide your email / contact for acknowledging you as a street guard 
+                            </label>
+                            <input v-model="incident.contact" class="form-input"/>
+                            <p class="form-input-hint">(optional and won’t appear to public, can be helpful in case if we have updates such as workshops, etc.)</p>
                         </div>
     
                         <div class='form-group text-bold'>

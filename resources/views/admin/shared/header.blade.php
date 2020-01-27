@@ -8,6 +8,7 @@
         <a class='item' href='{{ route('admin.incidents', ["type" => 'hazard']) }}'><i class='ui road icon'></i> Hazards</a>
         <a class='item' href='{{ route('admin.incidents', ["type" => 'threatening']) }}'><i class='ui frown icon'></i> Threatening incidents</a>
         <a class='item' href='{{ route('admin.map') }}'><i class='ui map icon'></i> Map</a>
+        <a class='item' href='{{ route('admin.messages') }}'><i class='ui envelope icon'></i> Messages</a>
 
         <div class="right aligned menu">
             <a class='item' href='{{ route('admin.auth.logout') }}'><i class='ui sign-out icon'></i> Logout</a>

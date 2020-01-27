@@ -43,6 +43,13 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     });
 
     /**
+     * Messages
+     */
+    Route::prefix('messages')->group(function () {
+        Route::get('/', 'MessagesController@index')->name('admin.messages');
+    });
+
+    /**
      * Files
      */
     Route::prefix('files')->group(function () {
@@ -61,27 +68,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/auth/logout', 'AuthController@logout')->name('admin.auth.logout');
 });
 
-Route::get('/', function () {
-    $lat = 30.272662;
-    $lng = 31.393483;
-    $zoom =  2;
-    
-    if (false) {
-        $ipAddress = '105.36.4.227';
-        $lat = $location['latitude'];
-        $lng = $location['longitude'];
-        $zoom = 16;
-    }
-
-    $data = [
-        'lat' => $lat,
-        'lng' => $lng,
-        'zoomLevel' => $zoom
-    ];
-    return view('site.home', $data);
-})->name('site.home');
-
-
-Route::get('/contact-us', function () {
-    return view('site.contact_us');
-})->name('site.contactus');
+Route::get('/', 'HomeController@index')->name('site.home');
+Route::get('/about-us', 'HomeController@aboutUs')->name('site.about-us');
+Route::post('/contact', 'HomeController@postContact')->name('site.post-contact');
+Route::get('/success', 'HomeController@successContact')->name('site.success-contact');

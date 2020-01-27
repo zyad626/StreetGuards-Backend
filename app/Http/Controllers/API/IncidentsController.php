@@ -14,6 +14,7 @@ class IncidentsController extends Controller
         
         $incident = new Incident;
         $incident->fill($incidentData);
+        $incident->ip = request()->ip();
         $incident->save();
 
         if (!empty($incidentData['file_ids'])) {

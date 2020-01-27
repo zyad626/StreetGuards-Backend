@@ -4,9 +4,10 @@
     background-color: #70a289;
     color: #fff;
     .item {
+        vertical-align: middle;
         display: inline-block;
         padding: 0 10px;
-        line-height: 60px;
+        line-height: 80px;
         text-decoration: none;
         color: #fff;
         &.logo {
@@ -14,6 +15,11 @@
             letter-spacing: 5px;
             line-height: 40px;
             background-color: #5d9277;
+            .description {
+                letter-spacing: 0;
+                font-size: 13px;
+                line-height: 20px;
+            }
 
             &:hover {
                 background-color: #5d9277;
