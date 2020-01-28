@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Street Gaurds- @yield('title')</title>
+        <title>Street Guards- @yield('title')</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -17,7 +17,7 @@
         <header>
             <div class='header-menu'>
                 <span class="item logo">
-                    STREET GAURDS
+                    STREET GUARDS
                     <div class="description">
                         A Crowd Sourcing Tool for Safer, Securer, and Better Structured Streets
                     </div>
