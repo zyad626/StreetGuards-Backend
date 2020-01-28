@@ -170,30 +170,34 @@
                         <div class='form-group'>
                             <label class="form-label text-bold">Type of collision</label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Rear">
-                                <i class="form-icon"></i> Rear
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Rear End">
+                                <i class="form-icon"></i> Rear End
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="End-Head">
-                                <i class="form-icon"></i> End-Head
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Head On">
+                                <i class="form-icon"></i> Head On
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="On-Side">
-                                <i class="form-icon"></i> On-Side
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Side Swipe">
+                                <i class="form-icon"></i> Side Swipe
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Swipe-Overtaking-Right">
-                                <i class="form-icon"></i> Swipe-Overtaking-Right
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Overtaking">
+                                <i class="form-icon"></i> Overtaking
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Turn-Left">
-                                <i class="form-icon"></i> Turn-Left 
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Right Turn">
+                                <i class="form-icon"></i> Right Turn
                             </label>
                             <label class="form-radio form-inline">
-                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Turn-Other">
-                                <i class="form-icon"></i> Turn-Other 
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Left Turn">
+                                <i class="form-icon"></i> Left Turn
                             </label>
-                            <textarea v-model="incident.crash_data.type_of_collision_explain"  v-if="incident.crash_data.type_of_collision == 'Turn-Other'" class="form-input" cols="30" rows="2" placeholder="Explain"></textarea>
+                            <label class="form-radio form-inline">
+                                <input type="radio" v-model='incident.crash_data.type_of_collision' value="Other">
+                                <i class="form-icon"></i> Other 
+                            </label>
+                            <textarea v-model="incident.crash_data.type_of_collision_explain"  v-if="incident.crash_data.type_of_collision == 'Other'" class="form-input" cols="30" rows="2" placeholder="Explain"></textarea>
                         </div>
 
                         <div class='form-group'>
