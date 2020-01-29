@@ -108,7 +108,7 @@
                     <td>                  
                         {{ $crashData['type_of_collision'] }}
                         <div class='ui label'>
-                            @if ($crashData['type_of_collision_explain']) 
+                            @if (!empty($crashData['type_of_collision_explain'])) 
                                 {{ $crashData['type_of_collision_explain'] }}
                             @endif
                         </div>
