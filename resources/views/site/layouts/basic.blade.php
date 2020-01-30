@@ -27,6 +27,11 @@
                     <a href="{{ route('site.about-us') }}" class="item">About us</a>
                 </span>
             </div>
+            <span class='mobile-list'>
+                <div></div>
+                <div></div>
+                <div></div>
+            </span>
         </header>
         <div class="container">
             @yield('content')

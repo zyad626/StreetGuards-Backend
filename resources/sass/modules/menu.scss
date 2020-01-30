@@ -47,11 +47,13 @@
     }
 
     @media (max-width: 900px) {
-        .item {
+        padding-right: 60px;
+
+        .active {
             display:none;
         }
 
-        .item.logo {
+        .active.show {
             display:block;
         }
     }

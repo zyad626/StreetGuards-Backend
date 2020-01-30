@@ -8,8 +8,13 @@ import Dropzone from 'dropzone';
 window.jQuery = $;
 require('./bootstrap');
 
-require('air-datepicker/dist/js/datepicker');
+require('air-datepicker/dist/js/datepicker');   
 require('air-datepicker/dist/js/i18n/datepicker.en');
+$( function () {
+    $('.mobile-list').click(function () {
+        $('.header-menu .active').toggleClass('show');
+    });
+});
 
 if ($('#map').length > 0) {
 

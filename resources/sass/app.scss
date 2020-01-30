@@ -110,3 +110,20 @@ body {
         margin-bottom: 40px;
     }
 }
+
+.mobile-list {
+    @media (min-width: 900px) {
+        display: none;
+    }
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 10000;
+    color: white;
+    div {
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+    }
+}
