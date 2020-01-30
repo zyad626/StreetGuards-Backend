@@ -9,6 +9,16 @@ use Storage;
 
 class FilesController extends Controller
 {
+    public function index()
+    {
+        $files = File::paginate();
+
+        $data = [
+            'files' => $files
+        ];
+        return view('admin.files.index', $data);
+    }
+
     public function view($id)
     {
         $file = File::find($id);

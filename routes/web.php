@@ -53,7 +53,8 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
      * Files
      */
     Route::prefix('files')->group(function () {
-        Route::get('/view/{vid}', 'FilesController@view')->name('admin.files.view');
+        Route::get('/', 'FilesController@index')->name('admin.files');
+        Route::get('/view/{id}', 'FilesController@view')->name('admin.files.view');
     });
 
     Route::prefix('map')->group(function () {
