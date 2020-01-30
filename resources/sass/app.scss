@@ -18,11 +18,10 @@ body {
 
 .Map-Filter {
     position: absolute;
-    z-index: 1000;
+    z-index: 500;
     padding: 20px;
     background-color: #fff;
-    right: 80px;
-    top: 100px;
+
     border: solid 1px #eee;
     border-radius: 5px;
     box-shadow: 5px 4px 6px #aaa;
@@ -31,6 +30,25 @@ body {
     label {
         display: block;
         line-height: 30px;
+    }
+    @media (min-width: 900px) {
+        right: 80px;
+        top: 100px;
+    }
+    @media (max-width: 900px) {
+        padding: 0 5px;
+        right: 80px;
+        bottom: 10px;
+
+        h5 {
+            display: none;
+        }
+        .form-group {
+            display: inline-block;
+            label span {
+                display: none;
+            }
+        }
     }
 }
 
@@ -48,7 +66,16 @@ body {
 .modal {
     overflow: auto;
     align-items: flex-start;
-    padding: 3.4rem;
+    padding: 130px 3.4rem;
+
+}
+
+.modal.active {
+    @media (max-width: 900px) {
+        margin: 0;
+        padding: 90px 10px;
+        z-index: 600;
+    }
 }
 
 .modal-container {
@@ -61,9 +88,13 @@ body {
 
 .actions {
     position: absolute;
-    z-index: 10000;
+    z-index: 500;
     left: 30px;
     top: 120px;
+    @media (max-width: 900px) {
+        top: 110px;
+        left: 10px;
+    }
     text-align: right;
     .btn {
         display: inline-block;
@@ -71,7 +102,10 @@ body {
 }
 
 .section {
-    padding: 40px;
+    padding: 20px 0;
+    @media (min-width: 900px) {
+        padding: 40px;
+    }
     p {
         margin-bottom: 40px;
     }

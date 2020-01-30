@@ -11,7 +11,9 @@
 
 
 <div class='actions'>
-    <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">Locate & Report</button>
+    <button id='app-add-incident' class='btn btn-primary' data-micromodal-trigger="modal-1">
+        Locate & Report
+    </button>
 </div>
 <div class='Map-Filter' id='map_filter'>
 

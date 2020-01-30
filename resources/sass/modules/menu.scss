@@ -3,11 +3,21 @@
     display: block;
     background-color: #70a289;
     color: #fff;
+    z-index: 1000;
+    position: relative;
     .item {
         vertical-align: middle;
-        display: inline-block;
+
+        line-height: 40px;
+
+        @media (max-width: 900px) {
+            display: block;
+        }
+        @media (min-width: 900px) {
+            display: inline-block;
+            line-height: 80px;
+        }
         padding: 0 10px;
-        line-height: 80px;
         text-decoration: none;
         color: #fff;
         &.logo {
@@ -19,6 +29,10 @@
                 letter-spacing: 0;
                 font-size: 13px;
                 line-height: 20px;
+                @media (max-width: 900px) {
+                    line-height: 25px;
+                    font-size: 13px;
+                }
             }
 
             &:hover {
@@ -30,5 +44,15 @@
             background-color: #5d9277;
         }
         transition: background-color 0.3s;
+    }
+
+    @media (max-width: 900px) {
+        .item {
+            display:none;
+        }
+
+        .item.logo {
+            display:block;
+        }
     }
 }

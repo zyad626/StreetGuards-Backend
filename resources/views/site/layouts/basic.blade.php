@@ -22,8 +22,10 @@
                         A Crowd Sourcing Tool for Safer, Securer, and Better Structured Streets
                     </div>
                 </span>
-                <a href="{{ route('site.home') }}" class="item">Home</a>
-                <a href="{{ route('site.about-us') }}" class="item">About us</a>
+                <span class='active'>
+                    <a href="{{ route('site.home') }}" class="item">Home</a>
+                    <a href="{{ route('site.about-us') }}" class="item">About us</a>
+                </span>
             </div>
         </header>
         <div class="container">
