@@ -38,6 +38,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
      */
     Route::prefix('incidents')->group(function () {
         Route::get('/', 'IncidentsController@index')->name('admin.incidents');
+        Route::get('/download', 'IncidentsController@download')->name('admin.incidents.download');
         Route::get('/view/{id}', 'IncidentsController@view')->name('admin.incidents.view');
         Route::get('/delete/{id}', 'IncidentsController@delete')->name('admin.incidents.delete');
     });

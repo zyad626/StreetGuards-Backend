@@ -15,6 +15,11 @@
                     @endif
             </h3>
         </div>
+        <div class='ui five wide right aligned column'>
+            <a href="{{ route('admin.incidents.download', ['type' => request('type')]) }}" class='ui blue button'>
+                <i class='ui file excel icon'></i> Export
+            </a>
+        </div>
     </div>
     <div class='ui divider'></div>
     <table class='ui small compact striped table'>
