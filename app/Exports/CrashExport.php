@@ -31,6 +31,7 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
         return [
             $incident->location,
             $incident->date,
+            $incident->contact,
             $crashData['type'],
             $crashData['number_involved_bikes'] ?? 0,
             $crashData['number_involved_vehicles'] ?? 0,
@@ -41,8 +42,8 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
             $crashData['type_of_collision_explain'] ?? '',
             $crashData['number_of_injuries'] ?? '',
             $crashData['number_of_fatalities'] ?? '',
+            implode("\n", $urls),
             $incident->description,
-            implode("\n", $urls)
         ];
     }
 
@@ -51,6 +52,7 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
         return [
             'Location',
             'Date',
+            'Contact',
             'Type',
             'Bikes Invloved ',
             'Vehicles Invloved',
@@ -61,8 +63,8 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
             'Collision Type Other',
             'Number Of Injuries',
             'Number Of fatalities',
-            'Description',
             'files',
+            'Description',
         ];
     }
 }

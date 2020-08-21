@@ -31,9 +31,10 @@ class IncidentsExport implements FromQuery, WithMapping, WithHeadings
         return [
             $incident->date,
             $incident->location,
+            $incident->contact,
             $incident->type,
+            implode("\n", $urls),
             $incident->description,
-            implode("\n", $urls)
         ];
     }
 
@@ -42,9 +43,10 @@ class IncidentsExport implements FromQuery, WithMapping, WithHeadings
         return [
             'Date',
             'Location',
+            'Contact',
             'Type',
-            'Description',
             'files',
+            'Description',
         ];
     }
 }

@@ -32,9 +32,10 @@ class ThreateningExport implements FromQuery, WithMapping, WithHeadings
         return [
             $incident->location,
             $incident->date,
+            $incident->contact,
             $threateningData['type'],
+            implode("\n", $urls),
             $incident->description,
-            implode("\n", $urls)
         ];
     }
 
@@ -44,9 +45,10 @@ class ThreateningExport implements FromQuery, WithMapping, WithHeadings
             
             'Location',
             'Date',
+            'Contact',
             'Type',
-            'Description',
             'files',
+            'Description',
         ];
     }
 }

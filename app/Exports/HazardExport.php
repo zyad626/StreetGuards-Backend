@@ -32,9 +32,10 @@ class HazardExport implements FromQuery, WithMapping, WithHeadings
         return [
             $incident->location,
             $incident->date,
+            $incident->contact,
             $hazardData['type'],
+            implode("\n", $urls),
             $incident->description,
-            implode("\n", $urls)
         ];
     }
 
@@ -43,9 +44,10 @@ class HazardExport implements FromQuery, WithMapping, WithHeadings
         return [
             'Location',
             'Date',
+            'Contact',
             'Type',
-            'Description',
             'files',
+            'Description',
         ];
     }
 }
