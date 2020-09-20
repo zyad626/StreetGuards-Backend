@@ -22,11 +22,27 @@
         </div>
     </div>
     <div class='ui divider'></div>
+
+        <form action="{{ route('admin.incidents') }}" class='ui form'>
+            <div class='ui fields'>
+                <input type="hidden" name='type' value='{{ request('type') }}'>
+                <div class='ui five wide field'>
+                    <input type="text" name='keyword' placeholder="search keyword" value='{{ request('keyword') }}'>
+                </div>
+                <div class='ui field'>    
+                    <button class='ui blue small button'>
+                        search
+                    </button>
+                </div>
+            </div>
+        </form>
     <table class='ui small compact striped table'>
         <thead>
             <tr>
+                <th>{{ __('admin_incidents.id') }}</th>
                 <th>{{ __('admin_incidents.date') }}</th>
                 <th>{{ __('admin_incidents.type') }}</th>
+                <th>{{ __('admin_incidents.uploads') }}</th>
                 <th>{{ __('admin_incidents.location') }}</th>
                 <th></th>
             </tr>
@@ -34,9 +50,17 @@
         <tbody>
             @foreach ($incidents as $incident)
             <tr>
+                <td>{{ $incident->id }}</td>
                 <td>{{ $incident->date }}</td>
                 <td>{{ __('admin_incidents.'.$incident->type) }}</td>
-                <td>{{ $incident->location['lat'] }} , {{ $incident->location['lng'] }}</td>
+                <td>{{ count($incident->file_ids ?? []) }}</td>
+                <td>
+                    {{ $incident->location['lat'] }} , {{ $incident->location['lng'] }}
+                    <a href="https://maps.google.com?q={{ $incident->location['lat'] }} , {{ $incident->location['lng'] }}" target="_blank">
+                        <i class='external link icon'></i>
+                        <i class='map icon'></i>
+                    </a>
+                </td>
                 <td>
                     <a class='ui small green button' href="{{ route('admin.incidents.view', $incident->id) }}">
                         <i class='ui eye icon'></i>

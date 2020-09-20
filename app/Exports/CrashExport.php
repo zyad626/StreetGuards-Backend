@@ -29,6 +29,7 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
         }
 
         return [
+            $incident->id,
             $incident->location,
             $incident->date,
             $incident->contact,
@@ -50,7 +51,7 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
-            'Location',
+            'Id',
             'Date',
             'Contact',
             'Type',

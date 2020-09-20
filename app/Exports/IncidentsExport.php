@@ -29,6 +29,7 @@ class IncidentsExport implements FromQuery, WithMapping, WithHeadings
         }
 
         return [
+            $incident->id,
             $incident->date,
             $incident->location,
             $incident->contact,
@@ -41,6 +42,7 @@ class IncidentsExport implements FromQuery, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
+            'Id',
             'Date',
             'Location',
             'Contact',

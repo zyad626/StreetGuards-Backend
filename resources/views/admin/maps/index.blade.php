@@ -3,6 +3,14 @@
 @section('title', 'Incidents')
 
 @section('content')
+
+<input
+    id="pac-input"
+    class="controls"
+    type="text"
+    placeholder="Search Box"
+    autofocus
+/>
 <div class='Map-Module' id='map'></div>
 <div class='Map-Filter' id='map_filter'>
 
@@ -40,6 +48,6 @@
 
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgUrAcFPriGCar9g7_3lwYLGOHpjN59rY"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgUrAcFPriGCar9g7_3lwYLGOHpjN59rY&libraries=places"
     type="text/javascript"></script>
 @endsection

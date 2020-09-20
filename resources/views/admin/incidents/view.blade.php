@@ -172,7 +172,13 @@
         </table>
     </div>
     <div class='ui three column'>
-        
+        <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBgUrAcFPriGCar9g7_3lwYLGOHpjN59rY
+              &q={{ $incident->location['lat'] }},{{ $incident->location['lng'] }}&zoom=14" allowfullscreen>
+          </iframe>
     </div>
 </div>
 

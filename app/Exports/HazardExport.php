@@ -30,6 +30,7 @@ class HazardExport implements FromQuery, WithMapping, WithHeadings
         }
 
         return [
+            $incident->id,
             $incident->location,
             $incident->date,
             $incident->contact,
@@ -42,6 +43,7 @@ class HazardExport implements FromQuery, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
+            'id',
             'Location',
             'Date',
             'Contact',

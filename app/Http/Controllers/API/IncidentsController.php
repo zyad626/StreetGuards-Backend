@@ -14,6 +14,7 @@ class IncidentsController extends Controller
         
         $incident = new Incident;
         $incident->fill($incidentData);
+        // $incident->geocode = $this->getGeocodedData($incident->location);
         $incident->ip = request()->ip();
         $incident->save();
 
@@ -23,6 +24,17 @@ class IncidentsController extends Controller
         }
         
         return $this->itemResponse($incident, new IncidentTransformer);
+    }
+
+    protected function getGeocodedData($location)
+    {
+        $latLng = $location['lat'] .','. $location['lng'];
+        try {
+            $data = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?latlng=$latLng&key=AIzaSyBgUrAcFPriGCar9g7_3lwYLGOHpjN59rY");
+            return json_decode($data);
+        } catch(\Exception $e) {
+            return [];
+        }
     }
 
     public function list(Request $request)

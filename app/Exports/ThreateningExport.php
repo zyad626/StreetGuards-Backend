@@ -30,6 +30,7 @@ class ThreateningExport implements FromQuery, WithMapping, WithHeadings
         }
 
         return [
+            $incident->id,
             $incident->location,
             $incident->date,
             $incident->contact,
@@ -42,7 +43,7 @@ class ThreateningExport implements FromQuery, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
-            
+            'Id',
             'Location',
             'Date',
             'Contact',

@@ -17,9 +17,14 @@ class IncidentsController extends Controller
         $x = [];
         
         $type = $request->get('type');
+        $keyword = $request->get('keyword');
         $incidentsQuery = Incident::query();
         if ($type) {
             $incidentsQuery->where(['type' => $type]);
+        }
+
+        if ($keyword) {
+            $incidentsQuery->where(['_id' => $keyword]);
         }
 
         $incidents = $incidentsQuery->orderBy('_id', 'desc')
