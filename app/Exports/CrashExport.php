@@ -52,6 +52,7 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
     {
         return [
             'Id',
+            'Location',
             'Date',
             'Contact',
             'Type',
