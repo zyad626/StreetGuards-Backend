@@ -25,6 +25,7 @@
             letter-spacing: 5px;
             line-height: 40px;
             background-color: #5d9277;
+            
             .description {
                 letter-spacing: 0;
                 font-size: 13px;
@@ -32,6 +33,10 @@
                 @media (max-width: 900px) {
                     line-height: 25px;
                     font-size: 13px;
+                }
+
+                @media (max-width: 300px) {
+                    display:none;
                 }
             }
 

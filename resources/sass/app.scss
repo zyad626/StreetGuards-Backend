@@ -92,7 +92,7 @@ body {
     left: 30px;
     top: 120px;
     @media (max-width: 900px) {
-        top: 110px;
+        top: 160px;
         left: 10px;
     }
     text-align: right;
@@ -170,6 +170,10 @@ body {
     border: solid 1px #aaa;
     font-size: 1.5em;
     border-radius: 3px;
+    @media (max-width: 900px) {
+        width: 80%;
+    }
+
   }
   
   #pac-input:focus {
