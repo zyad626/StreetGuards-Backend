@@ -30,7 +30,7 @@ class IncidentsController extends Controller
     {
         $latLng = $location['lat'] .','. $location['lng'];
         try {
-            $data = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?latlng=$latLng&key=AIzaSyBgUrAcFPriGCar9g7_3lwYLGOHpjN59rY");
+            $data = file_get_contents("https://maps.googleapis.com/maps/api/geocode/json?latlng=$latLng&key=AIzaSyA_1fyKerAdiVuPk8GOGBV11O0ZrFGvB8g");
             return json_decode($data);
         } catch(\Exception $e) {
             return [];
