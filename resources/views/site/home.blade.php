@@ -291,6 +291,6 @@
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgUrAcFPriGCar9g7_3lwYLGOHpjN59rY&libraries=places"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_1fyKerAdiVuPk8GOGBV11O0ZrFGvB8g&libraries=places"
     type="text/javascript"></script>
 @endsection
