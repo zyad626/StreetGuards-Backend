@@ -1,0 +1,181 @@
+$primary-color: #70a289;
+$dark-color: #1a251f;
+$error-color: #b93f3f;
+//
+@import 'modules/map.scss';
+@import 'spectre.css/src/spectre.scss';
+@import 'air-datepicker/dist/css/datepicker';
+@import 'dropzone/dist/dropzone';
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+/* @import url('https://fonts.googleapis.com/css?family=Oleo+Script&display=swap'); */
+@import 'modules/menu.scss';
+
+body {
+    background-color: #f7f7f7;
+    font-family: 'Muli', sans-serif;
+    /* font-family: 'Oleo Script', cursive; */
+}
+
+.Map-Filter {
+    position: absolute;
+    z-index: 500;
+    padding: 20px;
+    background-color: #fff;
+
+    border: solid 1px #eee;
+    border-radius: 5px;
+    box-shadow: 5px 4px 6px #aaa;
+    font-size: 0.8em;
+    font-weight: bold;
+    label {
+        display: block;
+        line-height: 30px;
+    }
+    @media (min-width: 900px) {
+        right: 80px;
+        top: 100px;
+    }
+    @media (max-width: 900px) {
+        padding: 0 5px;
+        right: 80px;
+        bottom: 10px;
+
+        h5 {
+            display: none;
+        }
+        .form-group {
+            display: inline-block;
+            label span {
+                display: none;
+            }
+        }
+    }
+}
+
+.Actions {
+    position: absolute;
+    left: 30px;
+    top: 100px;
+    padding: 10px;
+}
+
+.datepickers-container {
+    z-index: 20000;
+}
+
+.modal {
+    overflow: auto;
+    align-items: flex-start;
+    padding: 130px 3.4rem;
+
+}
+
+.modal.active {
+    @media (max-width: 900px) {
+        margin: 0;
+        padding: 90px 10px;
+        z-index: 600;
+    }
+}
+
+.modal-container {
+    max-height: fit-content;
+}
+
+.modal.active .modal-overlay {
+    position: fixed;
+}
+
+.actions {
+    position: absolute;
+    z-index: 500;
+    left: 30px;
+    top: 120px;
+    @media (max-width: 900px) {
+        top: 160px;
+        left: 10px;
+    }
+    text-align: right;
+    .btn {
+        display: inline-block;
+    }
+}
+
+.section {
+    padding: 20px 0;
+    @media (min-width: 900px) {
+        padding: 40px;
+    }
+    p {
+        margin-bottom: 40px;
+    }
+}
+
+.mobile-list {
+    @media (min-width: 900px) {
+        display: none;
+    }
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 10000;
+    color: white;
+    div {
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+    }
+}
+
+
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+  
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    margin-top: 20px;
+    padding: 10px 11px 10px 13px;
+    text-overflow: ellipsis;
+    width: 600px;
+    border: solid 1px #aaa;
+    font-size: 1.5em;
+    border-radius: 3px;
+    @media (max-width: 900px) {
+        width: 80%;
+    }
+
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
