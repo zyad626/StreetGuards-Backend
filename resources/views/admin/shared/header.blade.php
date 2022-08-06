@@ -4,6 +4,7 @@
         <a class='item' href='{{ route('admin.home') }}'><i class='ui home icon'></i> Dashboard</a>
         
         <a class='item' href='{{ route('admin.admins') }}'><i class='ui user secret icon'></i> Admins</a>
+        <a class='item' href='{{ route('admin.users') }}'><i class='ui user icon'></i> Users</a>
         <a class='item' href='{{ route('admin.incidents', ["type" => 'crash_near_miss']) }}'><i class='ui car icon'></i> Crash / Near Miss</a>
         <a class='item' href='{{ route('admin.incidents', ["type" => 'hazard']) }}'><i class='ui road icon'></i> Hazards</a>
         <a class='item' href='{{ route('admin.incidents', ["type" => 'threatening']) }}'><i class='ui frown icon'></i> Threatening incidents</a>

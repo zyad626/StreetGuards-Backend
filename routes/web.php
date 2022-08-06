@@ -13,7 +13,16 @@
 
 /**
  * Admin Routes
- */
+ * 
+ * 
+ *  */
+    Route::namespace('API')->prefix('admin/users')->group(function () {
+        Route::get('/', 'UsersController@index')->name('admin.users');
+        Route::get('/download', 'UsersController@download')->name('admin.users.download');
+        Route::get('/view/{id}', 'UsersController@view')->name('admin.users.view');
+        Route::get('/delete/{id}', 'UsersController@delete')->name('admin.users.delete');
+    });
+
 Route::namespace('Admin')->prefix('admin')->group(function () {
     /**
      * Home
@@ -42,6 +51,10 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('/view/{id}', 'IncidentsController@view')->name('admin.incidents.view');
         Route::get('/delete/{id}', 'IncidentsController@delete')->name('admin.incidents.delete');
     });
+
+
+
+
 
     /**
      * Messages
