@@ -169,6 +169,7 @@ class MapModule
             contentString += "<b>files attached:</b> "+incident.files.length+"<br/>";
         }
         contentString += '<a href="/admin/incidents/view/'+incident._id+'" target="_blank">view more</a> <br/>';
+        contentString += '<a href="/admin/incidents/delete/' + incident._id + '" target="_blank">delete</a> <br/>';
 
         var infowindow = new google.maps.InfoWindow({
             content: contentString
