@@ -67,11 +67,10 @@
                             {{ $crashData['number_involved_vehicles'] }}
                         </div>
                         @endif
-
-                        @if (!empty($crashData['number_involved_pedestrians']))
+                        @if (!empty($crashData['number_involved_pedesterians']))
                         <div class='ui red large label'>
                             <i class='ui male icon'></i>
-                            {{ $crashData['number_involved_pedestrians'] }}
+                            {{ $crashData['number_involved_pedesterians'] }}
                         </div>
                         @endif
                     </td>
@@ -176,8 +175,7 @@
             width="600"
             height="450"
             frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA_1fyKerAdiVuPk8GOGBV11O0ZrFGvB8g
-              &q={{ $incident->location['lat'] }},{{ $incident->location['lng'] }}&zoom=14" allowfullscreen>
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA_1fyKerAdiVuPk8GOGBV11O0ZrFGvB8g&q={{ $incident->location['lat'] }},{{ $incident->location['lng'] }}&zoom=14" allowfullscreen>
           </iframe>
     </div>
 </div>
