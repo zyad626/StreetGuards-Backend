@@ -6,7 +6,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Models\User_new;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class UsersController_new extends Controller
 {
     
     public function create(CreateUserRequest $request)
