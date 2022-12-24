@@ -43,4 +43,11 @@ class IncidentsController extends Controller
         $incidents = Incident::where('type', $type)->get();
         return $this->collectionResponse($incidents, new IncidentTransformer);
     }
+
+    public function index(Request $request)
+    {
+    
+        $incidents = Incident::get();
+        return $this->collectionResponse($incidents, new IncidentTransformer);
+    }
 }

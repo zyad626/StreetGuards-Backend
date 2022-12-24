@@ -36,7 +36,7 @@ class CrashExport implements FromQuery, WithMapping, WithHeadings
             $crashData['type'],
             $crashData['number_involved_bikes'] ?? 0,
             $crashData['number_involved_vehicles'] ?? 0,
-            $crashData['number_involved_pedestrians'] ?? 0,
+            $crashData['number_involved_pedesterians'] ?? 0,
             $crashData['reporter_involved']??false ? 'Yes' : 'No',
             $crashData['reporter_type']??'',
             $crashData['type_of_collision'] ?? '',
