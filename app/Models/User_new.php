@@ -18,7 +18,8 @@ class User_new extends MongoModel
         'points',
         'badges',
         'reports',
-        'avatar'
+        'avatar',
+        'products'
     ];
 
 }

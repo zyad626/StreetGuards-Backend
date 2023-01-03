@@ -17,7 +17,8 @@ class UserTransformer extends AbstractTransformer
             'points' => $user->points,
             'badges'=> $user->badges,
             'reports'=> $user->reports,
-            'avatar'=>$user->avatar
+            'avatar'=>$user->avatar,
+            'products' => $user->products
         ];
     }
 }

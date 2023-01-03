@@ -19,7 +19,8 @@ class CreateUserRequest extends BaseRequest
             'points',
             'badges',
             'reports',
-            'avatar'
+            'avatar',
+            'products'
         ];
 	}
     public function rules(){
@@ -32,7 +33,8 @@ class CreateUserRequest extends BaseRequest
             "points"=> 'required',
             "badges"=> 'required',
             "reports"=> 'required',
-            "avatar"=> 'required'
+            "avatar"=> 'required',
+            'products'=>'required'
         ];
 
     }
