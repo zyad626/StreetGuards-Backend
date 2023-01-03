@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProductsController;
 use Illuminate\Http\Request;
 
 /*
@@ -33,6 +34,14 @@ use App\Http\Controllers\API\UsersController_new;
 
     Route::get('/user', 'UsersController@getUser');
     Route::post('/user/create', 'UsersController@create');
+
+    //Products routes
+    Route::get('/products/{id}', [ProductsController::class, 'getProduct']);
+    Route::delete('/products/{id}', [ProductsController::class, 'destroy']);
+    Route::middleware('throttle:10,1')->post('/products', 'ProductsController@create');
+    Route::put('/products/{id}', [ProductsController::class, 'update']);
+    Route::get('/products', 'ProductsController@index');
+
 
 });
 
