@@ -9,7 +9,7 @@ class UserTransformer extends AbstractTransformer
     {
         return [
             'userId' => $user->userId,
-            'userName' => $user->userName,
+            'name' => $user->name,
             'email' => $user->email,
             'password' => $user->password,
             'rank' => $user->rank,
@@ -18,7 +18,16 @@ class UserTransformer extends AbstractTransformer
             'badges'=> $user->badges,
             'reports'=> $user->reports,
             'avatar'=>$user->avatar,
-            'products' => $user->products
+            'products' => $user->products,
+            'gender'=> $user->gender,
+            'isExpert'=> $user->isExpert,
+            'isTransportationExpert'=> $user->isTransportationExpert,
+            'date'=> $user->date,
+            'birthDate'=> $user->birthDate,
+            'profession'=> $user->profession,
+            'carOwnership'=> $user->carOwnership,
+            'drivingExperience'=> $user->drivingExperience,
+            'favProductsList'=> $user->favProductsList
         ];
     }
 }

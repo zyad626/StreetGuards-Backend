@@ -12,7 +12,8 @@ class Product extends MongoModel
         'title',
         'description',
         'price',
-        'image_url',
-        'seller_id',
+        'image',
+        'seller',
+        'email'
     ];
 }

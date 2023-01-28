@@ -25,16 +25,25 @@ class CreateUserRequest extends BaseRequest
 	}
     public function rules(){
         return [
-            "userId" => 'required',
-            "userName"=> 'required',
-            "email"=> 'required',
-            "password"=> 'required',
-            "rank"=> 'required',
-            "points"=> 'required',
-            "badges"=> 'required',
-            "reports"=> 'required',
-            "avatar"=> 'required',
-            'products'=>'required'
+            'userId'=> 'required',
+            'password'=>'required',
+            'name'=> 'required',
+            'email'=> 'required',
+            'gender'=> 'required',
+            'isExpert'=> 'required',
+            'isTransportationExpert'=> 'required',
+            // 'date'=> 'required',
+            'birthDate'=> 'required',
+            'profession'=> 'required',
+            'carOwnership'=> 'required',
+            'drivingExperience'=> 'required',
+            'avatar'=> 'required',
+            'badges'=> 'required',
+            'rank'=> 'required',
+            'rating'=> 'required',
+            'points'=> 'required',
+            'products'=> 'required',
+            'favProductsList'=> 'required',
         ];
 
     }

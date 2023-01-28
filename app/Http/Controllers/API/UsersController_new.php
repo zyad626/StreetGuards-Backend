@@ -18,7 +18,8 @@ class UsersController_new extends Controller
         $user->ip = request()->ip();
         $user->save();
 
-        return $this->itemResponse($user, new UserTransformer);
+        // return $this->itemResponse($user, new UserTransformer);
+        return response()->json(["result" => "ok"], 200);
 
     }
     public function getUser($id)
@@ -34,7 +35,11 @@ class UsersController_new extends Controller
     }
     public function update(Request $request,$id){
 
-        $user = User_new::where('userId', $id)->update([$request->attribute => $request->{$request->attribute}]);
+        $userData = $request->all();
+        $user = User_new::where('userId', $id)->first();
+        $user->fill($userData);
+        $user->save();
+        
         return response()->json(["result" => "ok"], 201); 
     }
 }

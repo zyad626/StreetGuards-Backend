@@ -14,8 +14,9 @@ class CreateProductRequest extends BaseRequest
             'title',
             'description',
             'price',
-            'image_url',
-            'seller_id',
+            'image',
+            'seller',
+            'email'
         ];
 	}
     public function rules(){
@@ -24,8 +25,9 @@ class CreateProductRequest extends BaseRequest
             "title"=> 'required',
             "description"=> 'required',
             "price"=> 'required',
-            "image_url"=> 'required',
-            "seller_id"=> 'required',
+            "image"=> 'required',
+            "seller"=> 'required',
+            "email"=> 'required'
         ];
 
     }

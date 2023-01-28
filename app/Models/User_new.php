@@ -10,16 +10,24 @@ class User_new extends MongoModel
     protected $collection = 'users_new';
     protected $fillable = [
         'userId',
-        'userName',
+        'name',
         'email',
         'password',
+        'gender',
+        'isExpert',
+        'isTransportationExpert',
+        'date',
+        'birthDate',
+        'profession',
+        'carOwnership',
+        'drivingExperience',
+        'avatar',
+        'badges',
         'rank',
         'rating',
         'points',
-        'badges',
-        'reports',
-        'avatar',
-        'products'
+        'products',
+        'favProductsList'
     ];
 
 }

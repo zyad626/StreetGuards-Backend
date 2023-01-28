@@ -10,8 +10,9 @@ class ProductTransformer extends AbstractTransformer
             'title' => $product->title,
             'description' => $product->description,
             'price' => $product->price,
-            'image_url'=> $product->image_url,
-            'seller_id'=> $product->seller_id,
+            'image'=> $product->image,
+            'seller'=> $product->seller,
+            'email'=>$product->email
         ];
     }
 }
