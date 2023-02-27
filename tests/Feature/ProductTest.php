@@ -52,4 +52,20 @@ class ProductTest extends TestCase
             "result" => "ok"
         ]);
     }
+
+    public function testUpdateProduct(){
+        $response = $this->putJson("/api/products/111", [
+            "id" => "111",
+            "title" => "Bike",
+            "description" => "A bike that smells fine",
+            "price" => 4201.28,
+            "image" => "https://i.pinimg.com/736x/a5/7f/2d/a57f2d87d8c6500d92f702fe6ba43db0--skateboard.jpg",
+            "seller" => "zaz",
+            "email" => "zoz@gmail.com"
+        ]);
+        $response->assertStatus(201);
+        $response->assertJson([
+            "result" => "ok"
+        ]);
+    }
 }
