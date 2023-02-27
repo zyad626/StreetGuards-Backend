@@ -45,4 +45,11 @@ class ProductTest extends TestCase
         ]);
 
     }  
+    public function testDestroyProduct(){
+        $response = $this->deleteJson("/api/products/222");
+        $response->assertStatus(200);
+        $response->assertJson([
+            "result" => "ok"
+        ]);
+    }
 }
