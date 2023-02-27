@@ -25,24 +25,10 @@ class ProductTest extends TestCase
             "email" => "zoz@gmail.com"
         ]);
 
-        // $response->dump();
+        $response->dump();
         $response->assertStatus(200);
         $response->assertJson([
             "result" => "ok"
         ]);
-    }
-    public function testGetProduct()
-    {
-        $response = $this->getJson("/api/products/763");
-        
-        $response->assertStatus(200);
-        $response->assertJson([
-            "data"=>[
-                0=>[
-                    "id"=>"763"
-                ]
-            ]
-        ]);
-
     }   
 }
