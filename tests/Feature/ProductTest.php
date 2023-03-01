@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 class ProductTest extends TestCase
 {
@@ -73,6 +74,12 @@ class ProductTest extends TestCase
     {
         $response = $this->getJson("/api/products");
         $response->assertJsonCount(5, 'data');
+
+    } 
+    public function testGetUserProducts()
+    {
+        $response = $this->getJson("/api/products?options=userProducts&content=123");
+        $response->assertJsonCount(1, 'data');
 
     } 
 }
