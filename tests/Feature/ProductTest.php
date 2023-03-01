@@ -82,4 +82,10 @@ class ProductTest extends TestCase
         $response->assertJsonCount(1, 'data');
 
     } 
+    public function testGetFavoriteProducts()
+    {
+        $response = $this->getJson("/api/products?options=userFavorits&content=123");
+        $response->assertJsonCount(1, 'data');
+
+    } 
 }
