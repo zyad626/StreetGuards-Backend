@@ -68,4 +68,11 @@ class ProductTest extends TestCase
             "result" => "ok"
         ]);
     }
+
+    public function testGetAllProducts()
+    {
+        $response = $this->getJson("/api/products");
+        $response->assertJsonCount(5, 'data');
+
+    } 
 }
