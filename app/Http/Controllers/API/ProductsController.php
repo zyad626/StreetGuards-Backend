@@ -43,17 +43,15 @@ class ProductsController extends Controller
         $product->delete();
         return response()->json(["result" => "ok"], 200);
     }
-    public function update(CreateProductRequest $request,$id){
-        $productData = $request->validated();
+    public function update(Request $request,$id){
 
         $product = Product::where('id', $id)->first();
         if(!$product){
             return response()->json(["message" => "Product not found"], 404);
         }
-        $product->fill($productData);
-        $product->save();
-        
-        return response()->json(["result" => "ok"], 201); 
+        $input = $request->only($product->getFillable());
+        Product::where('id', $id)->update($input);
+        return response()->json(["result" => "ok"], 200); 
     }
     public function index(Request $request)
     {

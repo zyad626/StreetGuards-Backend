@@ -46,16 +46,15 @@ class UsersController_new extends Controller
         $user->delete();
         return response()->json(["result" => "ok"], 200);
     }
-    public function update(CreateUserRequest $request,$id){
+    public function update(Request $request,$id){
 
-        $userData = $request->validated();
         $user = User_new::where('userId', $id)->first();
         if(!$user){
             return response()->json(["message" => "User not found"], 404);
         }
-        $user->fill($userData);
-        $user->save();
         
-        return response()->json(["result" => "ok"], 201); 
+        $input = $request->only($user->getFillable());
+        $user = User_new::where('userId', $id)->update($input);
+        return response()->json(["result" => "ok"], 200); 
     }
 }
