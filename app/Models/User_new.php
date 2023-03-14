@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Jenssegers\Mongodb\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class User_new extends MongoModel
 {
+	use Authenticatable;
+	use HasApiTokens, Notifiable;
     //
-    protected $collection = 'users_new';
+    protected $collection = 'users';
     protected $fillable = [
         'userId',
         'name',

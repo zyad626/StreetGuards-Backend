@@ -51,6 +51,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'sanctum' => [
+            'driver' => 'sanctum',
+            'provider' => 'users_new',
+        ],
+        
     ],
 
     /*
@@ -79,6 +84,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'users_new' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User_new::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
