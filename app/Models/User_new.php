@@ -12,7 +12,7 @@ class User_new extends MongoModel
 	use Authenticatable;
 	use HasApiTokens, Notifiable;
     //
-    protected $collection = 'users';
+    protected $collection = 'users_new';
     protected $fillable = [
         'userId',
         'name',
