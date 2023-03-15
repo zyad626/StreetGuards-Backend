@@ -5,6 +5,7 @@ use App\Http\Transformers\UserTransformer;
 use App\Http\Requests\CreateUserRequest;
 use App\Models\User_new;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class UsersController_new extends Controller
@@ -20,6 +21,7 @@ class UsersController_new extends Controller
         }
         else{
             $user = new User_new;
+            $userData['password'] = Hash::make($userData['password']); // Hash the password
             $user->fill($userData);
             $user->ip = request()->ip();
             $user->save();
@@ -41,8 +43,7 @@ class UsersController_new extends Controller
         if(! $user){
             return response()->json(["message" => "User not found"], 404);
         }
-        //TODO:: use password hashing
-        $isMatch = $request->password == $user->password;
+        $isMatch = Hash::check($request->password, $user->password);
         if(! $isMatch){
             return response()->json(["message" => "Wrong login credentials"], 401);
         }

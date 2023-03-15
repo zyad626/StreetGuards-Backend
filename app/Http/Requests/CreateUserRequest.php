@@ -26,7 +26,7 @@ class CreateUserRequest extends BaseRequest
     public function rules(){
         return [
             'userId'=> 'required',
-            'password'=>'required',
+            'password' => ['required', 'min:8', 'max:50', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[_@$!%*?&])[A-Za-z\d_@$!%*?&]+$/'],
             'name'=> 'required',
             'email'=> 'required|email',
             'gender'=> 'required',
@@ -47,4 +47,10 @@ class CreateUserRequest extends BaseRequest
         ];
 
     }
+    public function messages()
+{
+    return [
+        'password.regex' => 'The password must include at least one uppercase letter, one lowercase letter, one number, and one special character.'
+    ];
+}
 }
