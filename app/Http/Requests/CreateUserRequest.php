@@ -28,7 +28,7 @@ class CreateUserRequest extends BaseRequest
             'userId'=> 'required',
             'password'=>'required',
             'name'=> 'required',
-            'email'=> 'required|email',
+            'email'=> 'required',
             'gender'=> 'required',
             'isExpert'=> 'required',
             'isTransportationExpert'=> 'required',
@@ -42,8 +42,8 @@ class CreateUserRequest extends BaseRequest
             'rank'=> 'required',
             'rating'=> 'required',
             'points'=> 'required',
-            'products'=> 'sometimes',
-            'favProductsList'=> 'sometimes',
+            'products'=> 'required',
+            'favProductsList'=> 'required',
         ];
 
     }
